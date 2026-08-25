@@ -51,6 +51,19 @@ button {
   transition: var(--transition-fast);
 }
 
+/* Responsive visibility helper classes */
+@media (min-width: 1024px) {
+  .desktop-only-flex { display: flex !important; }
+  .desktop-only-block { display: block !important; }
+  .mobile-only { display: none !important; }
+}
+
+@media (max-width: 1023px) {
+  .desktop-only-flex { display: none !important; }
+  .desktop-only-block { display: none !important; }
+  .mobile-only { display: flex !important; }
+}
+
 /* Glassmorphism utility */
 .glass-panel {
   background: rgba(15, 35, 66, 0.75);

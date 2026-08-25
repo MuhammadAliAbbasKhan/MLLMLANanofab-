@@ -1,8 +1,9 @@
-// src/components/Footer.jsx
 import React from 'react';
 import { Linkedin, Youtube } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer style={{ background: '#D0D4E3', fontFamily: 'Source Sans Pro, sans-serif' }}>
       {/* ===== GET IN TOUCH / SIGN UP / CONNECT SECTION ===== */}
@@ -469,9 +470,9 @@ export default function Footer() {
             gap: '2rem',
             flexWrap: 'wrap'
           }}>
-            <a href="/legal-notice/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.8rem' }}>Legal Notice</a>
-            <a href="/data-protection/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.8rem' }}>Data Protection</a>
-            <a href="/terms-and-conditions/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.8rem' }}>Terms and Conditions</a>
+            <a href="#legal-notice" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.8rem' }}>{t('legalNotice', 'Legal Notice')}</a>
+            <a href="#privacy-statement" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.8rem' }}>{t('privacyStatement', 'Privacy Statement')}</a>
+            <a href="#terms-conditions" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.8rem' }}>{t('termsConditions', 'Terms and Conditions')}</a>
             <span
               id="changeOrWithdrawConsent"
               style={{

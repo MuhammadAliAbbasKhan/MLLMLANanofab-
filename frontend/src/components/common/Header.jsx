@@ -235,12 +235,10 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
       }}
     >
       {/* Top Bar - Above Header */}
-      <div style={{
+      <div className="desktop-only-block" style={{
         background: 'white',
         borderBottom: '1px solid #E5E7EB',
-        padding: '0.25rem 0',
-        display: 'none',
-        '@media (min-width: 1024px)': { display: 'block' }
+        padding: '0.25rem 0'
       }}>
         <div style={{
           maxWidth: '1280px',
@@ -281,7 +279,7 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
                 onClick={onLogout}
                 style={{ background: '#333F4C', color: 'white', border: 'none', borderRadius: '4px', padding: '0.2rem 0.6rem', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
               >
-                Sign Out
+                {t('signOut', 'Sign Out')}
               </button>
             </div>
           ) : (
@@ -290,13 +288,13 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
                 onClick={(e) => { e.preventDefault(); if (setCurrentPage) setCurrentPage('login'); }}
                 style={{ background: 'transparent', border: '1px solid #CBD5E1', borderRadius: '4px', padding: '0.2rem 0.6rem', color: '#333F4C', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer' }}
               >
-                Sign In
+                {t('signIn', 'Sign In')}
               </button>
               <button
                 onClick={(e) => { e.preventDefault(); if (setCurrentPage) setCurrentPage('signup'); }}
                 style={{ background: '#DA2B1F', border: 'none', borderRadius: '4px', padding: '0.2rem 0.6rem', color: 'white', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer' }}
               >
-                Sign Up
+                {t('signUp', 'Sign Up')}
               </button>
             </div>
           )}
@@ -399,10 +397,7 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
         </div>
 
         {/* Desktop Navigation */}
-        <nav style={{
-          display: 'none',
-          '@media (min-width: 1024px)': { display: 'flex' }
-        }}>
+        <nav className="desktop-only-flex">
           <ul style={{
             display: 'flex',
             listStyle: 'none',
@@ -537,18 +532,16 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
         {/* Mobile Menu Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           {/* Mobile search and language */}
-          <div style={{
-            display: 'flex',
+          <div className="mobile-only" style={{
             alignItems: 'center',
-            gap: '0.5rem',
-            '@media (min-width: 1024px)': { display: 'none' }
+            gap: '0.5rem'
           }}>
             <button
               style={{
                 background: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                color: isScrolled ? '#333F4C' : 'white',
+                color: '#333F4C',
                 padding: '0.25rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -561,17 +554,16 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
           </div>
 
           <button
+            className="mobile-only"
             onClick={toggleMobileMenu}
             style={{
               background: 'transparent',
               border: 'none',
               cursor: 'pointer',
-              color: isScrolled ? '#333F4C' : 'white',
+              color: '#333F4C',
               padding: '0.25rem',
-              display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              '@media (min-width: 1024px)': { display: 'none' }
+              justifyContent: 'center'
             }}
             aria-label="open / close menu"
           >
