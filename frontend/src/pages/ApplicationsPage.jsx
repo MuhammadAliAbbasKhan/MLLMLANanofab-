@@ -1,132 +1,250 @@
+// src/pages/ApplicationsPage.jsx
 import React from 'react';
-import { Layers, CheckCircle2, ArrowRight } from 'lucide-react';
 
-export const ApplicationsPage = ({ setCurrentPage }) => {
-  const applications = [
+export default function ApplicationsPage() {
+  // Application categories data
+  const applicationCategories = [
     {
-      title: 'Quantum Devices & Qubits',
-      subtitle: 'Nanoscale Patterning of Superconducting Circuits',
-      desc: 'Fabricate superconducting qubits, Josephson junctions, and quantum dots with high overlay accuracy and minimal substrate heating.',
-      highlights: ['Sub-10nm thermal probe resolution', 'Zero charging on sensitive substrates', 'Closed-loop in-situ AFM control']
+      id: '1d-2d-materials',
+      title: '1D & 2D Materials',
+      link: 'https://heidelberg-instruments.com/applications/1d-2d-materials/'
     },
     {
-      title: '2D Materials & Graphene Nanodevices',
-      subtitle: 'Zero Radiation Damage Patterning',
-      desc: 'Pattern 2D materials like Graphene, MoS2, WSe2, and hBN flakes without damaging atomic monolayers.',
-      highlights: ['Thermal scanning probe lithography', 'Direct contact write on exfoliated flakes', 'High-throughput contacts writing']
+      id: 'advanced-packaging',
+      title: 'Advanced Packaging',
+      link: 'https://heidelberg-instruments.com/applications/advanced-packaging/'
     },
     {
-      title: 'Micro-Optics & Grayscale 3D Topography',
-      subtitle: 'Diffractive Optical Elements & Microlenses',
-      desc: 'Create smooth continuous 2.5D optical topographies, blazed diffraction gratings, and micro-lens arrays using DWL grayscale exposure modes.',
-      highlights: ['Continuous 2.5D profile depth control', 'Ultra-low surface roughness < 2nm', 'Large-area optical arrays up to 400mm']
+      id: 'biotechnology-medical-engineering',
+      title: 'Biotechnology and Medical Engineering',
+      link: 'https://heidelberg-instruments.com/applications/biotechnology-medical-engineering/'
     },
     {
-      title: 'MEMS & Sensor Fabrication',
-      subtitle: 'Rapid Prototyping of Micro-Sensors',
-      desc: 'Maskless direct alignment for accelerometers, pressure sensors, micro-cantilevers, and micro-actuators.',
-      highlights: ['Front-to-backside wafer alignment', 'Thick photoresist exposure (SU-8 > 100µm)', 'Fast turnaround without photomask delays']
+      id: 'displays',
+      title: 'Displays',
+      link: 'https://heidelberg-instruments.com/applications/displays/'
     },
     {
-      title: 'Biotechnology & Nanofluidics',
-      subtitle: 'Lab-on-a-Chip & Neuronal Guidance',
-      desc: 'Engineered microfluidic channels, cell traps, and bio-compatible scaffolds for drug delivery and single-cell analysis.',
-      highlights: ['Sub-micron fluidic channel resolution', 'Bio-compatible polymer compatibility', 'Multi-level fluidic hierarchy']
+      id: 'high-security-printing',
+      title: 'High-Security Printing',
+      link: 'https://heidelberg-instruments.com/applications/high-security-printing/'
     },
     {
-      title: 'Semiconductors & Advanced Packaging',
-      subtitle: 'Mix and Match Photolithography',
-      desc: 'Ideal for chip repair, rework, bump patterning, and heterogenous integration packaging.',
-      highlights: ['Sub-micron mix & match alignment', 'Die-level dynamic scaling & distortion correction', 'Fast layout iteration']
+      id: 'materials-science',
+      title: 'Materials Science',
+      link: 'https://heidelberg-instruments.com/applications/materials-science/'
+    },
+    {
+      id: 'mems',
+      title: 'MEMS',
+      link: 'https://heidelberg-instruments.com/applications/mems/'
+    },
+    {
+      id: 'microelectronics-nanoelectronics',
+      title: 'Microelectronics and Nanoelectronics',
+      link: 'https://heidelberg-instruments.com/applications/microelectronics-nanoelectronics/'
+    },
+    {
+      id: 'microfluidics-nanofluidics',
+      title: 'Microfluidics and Nanofluidics',
+      link: 'https://heidelberg-instruments.com/applications/microfluidics-nanofluidics/'
+    },
+    {
+      id: 'micro-optics-photonics',
+      title: 'Micro-optics and Photonics',
+      link: 'https://heidelberg-instruments.com/applications/micro-optics-photonics/'
+    },
+    {
+      id: 'nanoimprint-templates',
+      title: 'Nanoimprint Templates',
+      link: 'https://heidelberg-instruments.com/applications/nanoimprint-templates/'
+    },
+    {
+      id: 'photomasks',
+      title: 'Photomasks',
+      link: 'https://heidelberg-instruments.com/applications/photomasks/'
+    },
+    {
+      id: 'quantum-devices',
+      title: 'Quantum Devices',
+      link: 'https://heidelberg-instruments.com/applications/quantum-devices/'
+    },
+    {
+      id: 'semiconductors',
+      title: 'Semiconductors',
+      link: 'https://heidelberg-instruments.com/applications/semiconductors/'
+    },
+    {
+      id: 'sensors',
+      title: 'Sensors',
+      link: 'https://heidelberg-instruments.com/applications/sensors/'
     }
   ];
 
   return (
-    <main style={{ fontFamily: 'Source Sans Pro, sans-serif', background: '#F8FAFC', color: '#1D252E', paddingTop: '80px' }}>
-      
-      {/* Banner */}
-      <section style={{
-        position: 'relative',
-        minHeight: '220px',
-        background: 'linear-gradient(135deg, #333F4C 0%, #1D252E 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        padding: '3rem 0',
-        color: 'white'
-      }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
-          <span style={{ color: '#DA2B1F', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Industry & Research Solutions
-          </span>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: '0.5rem 0' }}>
-            Nanofabrication Applications
-          </h1>
-          <p style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: '750px', margin: 0 }}>
-            From quantum devices and 2D materials to micro-optics and MEMS sensors, explore MLLMLANanofab technology solutions.
-          </p>
+    <main style={{ fontFamily: 'Source Sans Pro, sans-serif', background: 'white' }}>
+      {/* ===== HERO SECTION ===== */}
+      <section
+        style={{
+          position: 'relative',
+          minHeight: '300px',
+          background: 'url(https://heidelberg-instruments.com/wp-content/uploads/2023/04/Applications-Header_MLA300-Packaging-Demonstrator-SEM.webp) center center / cover no-repeat',
+          display: 'flex',
+          alignItems: 'flex-end',
+          padding: '3rem 0'
+        }}
+      >
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.3)',
+          zIndex: 0
+        }} />
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 2rem',
+          width: '100%'
+        }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            flexWrap: 'wrap',
+            gap: '1rem'
+          }}>
+            <h1 style={{
+              color: 'white',
+              fontSize: '3rem',
+              fontWeight: 'bold',
+              margin: 0
+            }}>
+              Applications
+            </h1>
+            <a
+              href="https://heidelberg-instruments.com/contact-sales/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                padding: '0.6rem 1.5rem',
+                background: '#DA2B1F',
+                color: 'white',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                fontWeight: '600',
+                fontSize: '1rem',
+                transition: 'background 0.3s',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => e.target.style.background = '#7C8795'}
+              onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
+            >
+              CONTACT
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Grid */}
-      <section style={{ padding: '4rem 0' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-          {applications.map((app, idx) => (
-            <div
-              key={idx}
-              style={{
-                background: 'white',
-                borderRadius: '8px',
-                padding: '2rem',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
-                border: '1px solid #E2E8F0',
-                display: 'flex',
-                flexDirection: 'column',
-                justify: 'space-between'
-              }}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 'bold', color: '#333F4C', marginBottom: '0.25rem' }}>{app.title}</h3>
-                <div style={{ fontSize: '0.85rem', color: '#DA2B1F', fontWeight: 600, marginBottom: '1rem' }}>{app.subtitle}</div>
-                <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>{app.desc}</p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0', display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.85rem', color: '#4B5563' }}>
-                  {app.highlights.map((h, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <CheckCircle2 size={16} color="#DA2B1F" /> {h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      {/* ===== MAIN CONTENT ===== */}
+      <section style={{ padding: '3rem 0', background: 'white' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+          
+          {/* Title */}
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            color: '#1D252E',
+            marginBottom: '1.5rem',
+            textAlign: 'center'
+          }}>
+            Our Applications Across Industries and Research
+          </h2>
 
-              <button
-                onClick={() => setCurrentPage('designer')}
+          {/* Hero Image */}
+          <div style={{
+            borderRadius: '8px',
+            overflow: 'hidden',
+            marginBottom: '2rem',
+            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)'
+          }}>
+            <img
+              src="https://heidelberg-instruments.com/wp-content/uploads/2024/09/Product_header_APPLICATIONS-2025_2300x1280.webp"
+              alt="Our applications depicted in a circle together with suitable systems."
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+
+          {/* Description Text */}
+          <div style={{
+            maxWidth: '900px',
+            margin: '0 auto 2rem auto',
+            color: '#333F4C',
+            fontSize: '1rem',
+            lineHeight: '1.7'
+          }}>
+            <p style={{ marginBottom: '0.75rem' }}>
+              Heidelberg Instruments systems are used worldwide by industry leaders, universities, and research 
+              institutes for advanced micro- and nanofabrication. Our tools enable precise micro- and nanoscale 
+              patterning for a wide range of applications, from photonics, micro-optics, and MEMS to quantum 
+              devices, microelectronics, and biomedical engineering.
+            </p>
+            <p>
+              We provide customized lithography solutions to meet the complex requirements of our global customers, 
+              whether for high-resolution prototyping, small-batch production, or cutting-edge research.
+            </p>
+          </div>
+
+          {/* Applications List */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '0.5rem',
+            maxWidth: '700px',
+            margin: '0 auto'
+          }}>
+            {applicationCategories.map((app) => (
+              <a
+                key={app.id}
+                href={app.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  background: '#333F4C',
-                  color: 'white',
-                  borderRadius: '4px',
-                  fontWeight: '600',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontSize: '0.85rem',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.4rem',
-                  transition: 'background 0.3s'
+                  gap: '0.75rem',
+                  padding: '0.5rem 0.75rem',
+                  color: '#333F4C',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  transition: 'color 0.3s',
+                  borderRadius: '4px',
+                  borderBottom: '1px solid #E5E7EB'
                 }}
-                onMouseEnter={(e) => e.target.style.background = '#DA2B1F'}
-                onMouseLeave={(e) => e.target.style.background = '#333F4C'}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#DA2B1F';
+                  e.target.style.paddingLeft = '1rem';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#333F4C';
+                  e.target.style.paddingLeft = '0.75rem';
+                }}
               >
-                Simulate Exposure Parameters <ArrowRight size={14} />
-              </button>
-            </div>
-          ))}
+                <span style={{ color: '#DA2B1F', fontSize: '0.7rem' }}>▸</span>
+                {app.title}
+              </a>
+            ))}
+          </div>
+
+          {/* Spacer */}
+          <div style={{ height: '20px' }} />
         </div>
       </section>
-
     </main>
   );
-};
+}
 
-export default ApplicationsPage;
+export { ApplicationsPage };

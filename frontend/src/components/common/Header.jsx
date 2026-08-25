@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Globe, Menu, X, ChevronDown, Linkedin, Youtube, Twitter } from 'lucide-react';
 
-export default function Header() {
+export default function Header({ currentPage, setCurrentPage, currentUser, onOpenAuth, onOpenSearch, onLogout }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
@@ -11,6 +11,16 @@ export default function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isMobileLanguageOpen, setIsMobileLanguageOpen] = useState(false);
   const headerRef = useRef(null);
+
+  const handleNavClick = (e, pageKey) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (setCurrentPage && pageKey) {
+      setCurrentPage(pageKey);
+    }
+    setOpenSubmenu(null);
+    setIsMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Handle scroll effect
   useEffect(() => {
@@ -45,79 +55,44 @@ export default function Header() {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isMobileMenuOpen]);
 
-  // Navigation data
+  // Navigation data mapping to internal app routes
   const navItems = [
     {
       id: 'applications',
       label: 'Applications',
-      link: 'https://heidelberg-instruments.com/applications/',
+      page: 'applications',
       hasSubmenu: true,
       submenu: {
         columns: [
           {
             headline: 'Applications',
-            headlineLink: 'https://heidelberg-instruments.com/applications/',
+            page: 'applications',
             items: [
-              { title: '1D & 2D Materials', link: 'https://heidelberg-instruments.com/applications/1d-2d-materials/' },
-              { title: 'Advanced Packaging', link: 'https://heidelberg-instruments.com/applications/advanced-packaging/' },
-              { title: 'Biotechnology and Medical Engineering', link: 'https://heidelberg-instruments.com/applications/biotechnology-medical-engineering/' },
-              { title: 'Displays', link: 'https://heidelberg-instruments.com/applications/displays/' },
-              { title: 'High-Security Printing', link: 'https://heidelberg-instruments.com/applications/high-security-printing/' }
+              { title: '1D & 2D Materials', page: 'applications' },
+              { title: 'Advanced Packaging', page: 'applications' },
+              { title: 'Biotechnology and Medical Engineering', page: 'applications' },
+              { title: 'Displays', page: 'applications' },
+              { title: 'High-Security Printing', page: 'applications' }
             ]
           },
           {
-            headline: '',
+            headline: 'Specialized Fields',
             items: [
-              { title: 'Materials Science', link: 'https://heidelberg-instruments.com/applications/materials-science/' },
-              { title: 'MEMS', link: 'https://heidelberg-instruments.com/applications/mems/' },
-              { title: 'Microelectronics and Nanoelectronics', link: 'https://heidelberg-instruments.com/applications/microelectronics-nanoelectronics/' },
-              { title: 'Microfluidics and Nanofluidics', link: 'https://heidelberg-instruments.com/applications/microfluidics-nanofluidics/' },
-              { title: 'Micro-Optics and Photonics', link: 'https://heidelberg-instruments.com/applications/micro-optics-photonics/' }
+              { title: 'Materials Science', page: 'applications' },
+              { title: 'MEMS Sensors', page: 'applications' },
+              { title: 'Microelectronics & Nanoelectronics', page: 'applications' },
+              { title: 'Microfluidics and Nanofluidics', page: 'applications' },
+              { title: 'Micro-Optics and Photonics', page: 'applications' }
             ]
           },
           {
-            headline: '',
+            headline: 'Emerging Tech',
             items: [
-              { title: 'Nanoimprint Templates', link: 'https://heidelberg-instruments.com/applications/nanoimprint-templates/' },
-              { title: 'Photomasks', link: 'https://heidelberg-instruments.com/applications/photomasks/' },
-              { title: 'Quantum Devices', link: 'https://heidelberg-instruments.com/applications/quantum-devices/' },
-              { title: 'Semiconductors', link: 'https://heidelberg-instruments.com/applications/semiconductors/' },
-              { title: 'Sensors', link: 'https://heidelberg-instruments.com/applications/sensors/' }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      id: 'core-technologies',
-      label: 'Core Technologies',
-      link: 'https://heidelberg-instruments.com/core-technologies/',
-      hasSubmenu: true,
-      submenu: {
-        columns: [
-          {
-            headline: 'Core Technologies',
-            headlineLink: 'https://heidelberg-instruments.com/core-technologies/',
-            items: [
-              { title: 'Maskless Laser Lithography', link: 'https://heidelberg-instruments.com/core-technologies/maskless-laser-lithography/' },
-              { title: 'Thermal Scanning Probe Lithography', link: 'https://heidelberg-instruments.com/core-technologies/thermal-scanning-probe-lithography/' }
-            ]
-          },
-          {
-            headline: 'Key Features',
-            items: [
-              { title: 'Accurate Pattern Placement', link: 'https://heidelberg-instruments.com/core-technologies/accurate-pattern-placement/' },
-              { title: 'Grayscale Lithography', link: 'https://heidelberg-instruments.com/core-technologies/grayscale-lithography/' },
-              { title: 'High Aspect Ratio', link: 'https://heidelberg-instruments.com/core-technologies/high-aspect-ratio/' },
-              { title: 'High & Ultra-High Resolution', link: 'https://heidelberg-instruments.com/core-technologies/high-ultra-high-resolution/' }
-            ]
-          },
-          {
-            headline: '',
-            items: [
-              { title: 'In-Situ Inspection & Metrology', link: 'https://heidelberg-instruments.com/core-technologies/in-situ-inspection-metrology/' },
-              { title: 'Non-Invasive Nanolithography', link: 'https://heidelberg-instruments.com/core-technologies/non-invasive-nanolithography/' },
-              { title: 'Small & Unconventional Substrates', link: 'https://heidelberg-instruments.com/core-technologies/small-unconventional-substrates/' }
+              { title: 'Nanoimprint Templates', page: 'applications' },
+              { title: 'Photomasks Fabrication', page: 'applications' },
+              { title: 'Quantum Devices & Qubits', page: 'applications' },
+              { title: 'Semiconductors', page: 'applications' },
+              { title: 'Sensors Nanopatterning', page: 'applications' }
             ]
           }
         ]
@@ -125,81 +100,67 @@ export default function Header() {
     },
     {
       id: 'products',
-      label: 'Products',
-      link: 'https://heidelberg-instruments.com/products/',
+      label: 'Products & Systems',
+      page: 'products',
       hasSubmenu: true,
       submenu: {
         columns: [
           {
             headline: 'Research & Development',
             items: [
-              { title: 'µMLA Maskless Aligner', link: 'https://heidelberg-instruments.com/product/%ce%bcmla/' },
-              { title: 'MLA 150 Maskless Aligner', link: 'https://heidelberg-instruments.com/product/mla150/' },
-              { title: 'DWL 66<sup>+</sup> Laser Lithography System', link: 'https://heidelberg-instruments.com/product/dwl-66/' },
-              { title: 'VPG 300 DI Maskless Stepper', link: 'https://heidelberg-instruments.com/product/vpg-300-di/' },
-              { title: 'NanoFrazor Nanolithography Tool', link: 'https://heidelberg-instruments.com/product/nanofrazor/' }
+              { title: 'µMLA Maskless Aligner', page: 'products' },
+              { title: 'MLA 150 Maskless Aligner', page: 'products' },
+              { title: 'DWL 66<sup>+</sup> Laser Lithography System', page: 'products' },
+              { title: 'VPG 300 DI Maskless Stepper', page: 'products' },
+              { title: 'NanoFrazor Nanolithography Tool', page: 'products' }
             ]
           },
           {
-            headline: 'Industrial',
+            headline: 'Industrial Fabs',
             items: [
-              { title: 'MLA 300 Maskless Aligner', link: 'https://heidelberg-instruments.com/product/mla300/' },
-              { title: 'DWL 2000 GS / DWL 4000 GS', link: 'https://heidelberg-instruments.com/product/dwl-2000-4000-gs/' },
-              { title: 'VPG<sup>+</sup> 200 / VPG<sup>+</sup> 400 / VPG<sup>+</sup> 800', link: 'https://heidelberg-instruments.com/product/vpg-200-400-800/' },
-              { title: 'VPG<sup>+</sup> 1400 FPD / VPG<sup>+</sup> 1850 FPD', link: 'https://heidelberg-instruments.com/product/vpg-1400-1850-fpd/' },
-              { title: 'VPG 300 DI Maskless Stepper', link: 'https://heidelberg-instruments.com/product/vpg-300-di/' },
-              { title: 'ULTRA Semiconductor Mask Writer', link: 'https://heidelberg-instruments.com/product/ultra/' }
+              { title: 'MLA 300 Maskless Aligner', page: 'products' },
+              { title: 'DWL 2000 GS / DWL 4000 GS', page: 'products' },
+              { title: 'VPG<sup>+</sup> 200 / VPG<sup>+</sup> 400 / VPG<sup>+</sup> 800', page: 'products' },
+              { title: 'VPG<sup>+</sup> 1400 FPD / VPG<sup>+</sup> 1850 FPD', page: 'products' },
+              { title: 'ULTRA Semiconductor Mask Writer', page: 'products' }
             ]
           },
           {
-            headline: '',
+            headline: 'Interactive Tools',
             items: [
-              { title: 'Find Your Solution', link: 'https://heidelberg-instruments.com/products/#product-finder' }
+              { title: 'Optics & Dosage Simulator', page: 'designer' },
+              { title: 'License Plans & Pricing', page: 'shop' }
             ]
           }
         ]
       }
     },
     {
-      id: 'library',
-      label: 'Library',
-      link: 'https://heidelberg-instruments.com/library/',
+      id: 'designer',
+      label: 'DESIGNER Suite',
+      page: 'designer',
+      hasSubmenu: false
+    },
+    {
+      id: 'shop',
+      label: 'Shop & Licenses',
+      page: 'shop',
       hasSubmenu: false
     },
     {
       id: 'service',
-      label: 'Service and Support',
-      link: '#',
+      label: 'Service & Support',
+      page: 'support',
       hasSubmenu: true,
       submenu: {
         columns: [
           {
-            headline: 'Worldwide Service',
+            headline: 'Cleanroom Support',
             items: [
-              { title: 'Service and Support', link: 'https://heidelberg-instruments.com/service-and-support/' },
-              { title: 'Contact Service', link: 'https://heidelberg-instruments.com/contact-service/' },
-              { title: 'Service Locations', link: 'https://heidelberg-instruments.com/service-and-support/#service-locations' },
-              { title: 'Frequently Asked Questions', link: 'https://heidelberg-instruments.com/faq/' }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      id: 'news',
-      label: 'News and Events',
-      link: '#',
-      hasSubmenu: true,
-      submenu: {
-        columns: [
-          {
-            headline: 'News and Events',
-            items: [
-              { title: 'Press Releases', link: 'https://heidelberg-instruments.com/press-releases/' },
-              { title: 'Blog Posts', link: 'https://heidelberg-instruments.com/blog/' },
-              { title: 'Dates & Events', link: 'https://heidelberg-instruments.com/events/' },
-              { title: 'Newsletter', link: 'https://share-eu1.hsforms.com/1XLh2iUVtSLq6kbKdE_Np0Q2enb0m' },
-              { title: 'Application Image Gallery', link: 'https://heidelberg-instruments.com/application-image-gallery-on-advanced-micro-nanofabrication/' }
+              { title: 'Process Engineering Support', page: 'support' },
+              { title: 'Consultation with Engineers', page: 'premium-consultation' },
+              { title: 'Service Locations & Labs', page: 'about' },
+              { title: 'Frequently Asked Questions', page: 'support' }
             ]
           }
         ]
@@ -208,25 +169,17 @@ export default function Header() {
     {
       id: 'company',
       label: 'Company',
-      link: '#',
+      page: 'about',
       hasSubmenu: true,
       submenu: {
         columns: [
           {
-            headline: 'Company',
+            headline: 'About MLLMLANanofab',
             items: [
-              { title: 'About Us', link: 'https://heidelberg-instruments.com/about-us/' },
-              { title: 'The Lithographer', link: 'https://heidelberg-instruments.com/the-lithographer/' },
-              { title: 'History', link: 'https://heidelberg-instruments.com/history/' },
-              { title: 'Careers', link: 'https://heidelberg-instruments.com/career/' }
-            ]
-          },
-          {
-            headline: '',
-            items: [
-              { title: 'Network Memberships', link: 'https://heidelberg-instruments.com/network-memberships/' },
-              { title: 'Locations', link: 'https://heidelberg-instruments.com/locations/' },
-              { title: 'Contact Sales', link: 'https://heidelberg-instruments.com/contact-sales/' }
+              { title: 'About Us', page: 'about' },
+              { title: 'Cleanroom Heritage & Quality', page: 'about' },
+              { title: 'Executive Dashboard', page: 'admin' },
+              { title: 'Legal & Privacy Policy', page: 'legal-notice' }
             ]
           }
         ]
@@ -235,18 +188,18 @@ export default function Header() {
   ];
 
   const languages = [
-    { code: 'EN', link: 'https://heidelberg-instruments.com/', active: true },
-    { code: '简体中文', link: 'https://heidelberg-instruments.com/zh-hans/', active: false },
-    { code: '日本語', link: 'https://heidelberg-instruments.com/ja/', active: false },
-    { code: '한국어', link: 'https://heidelberg-instruments.com/ko/', active: false },
-    { code: 'Español', link: 'https://heidelberg-instruments.com/es/', active: false },
-    { code: 'Français', link: 'https://heidelberg-instruments.com/fr/', active: false }
+    { code: 'EN', page: 'home', active: true },
+    { code: '简体中文', page: 'home', active: false },
+    { code: '日本語', page: 'home', active: false },
+    { code: '한국어', page: 'home', active: false },
+    { code: 'Español', page: 'home', active: false },
+    { code: 'Français', page: 'home', active: false }
   ];
 
   const topMenuItems = [
-    { label: 'Careers', link: 'https://heidelberg-instruments.com/career/' },
-    { label: 'Contact Sales', link: 'https://heidelberg-instruments.com/contact-sales/' },
-    { label: 'Contact Service', link: 'https://heidelberg-instruments.com/contact-service/' }
+    { label: 'Careers', page: 'about' },
+    { label: 'Contact Sales', page: 'premium-consultation' },
+    { label: 'Contact Service', page: 'support' }
   ];
 
   const toggleSubmenu = (id) => {
@@ -300,7 +253,8 @@ export default function Header() {
           {topMenuItems.map((item) => (
             <a
               key={item.label}
-              href={item.link}
+              href={`#${item.page}`}
+              onClick={(e) => handleNavClick(e, item.page)}
               style={{
                 color: '#4B5563',
                 textDecoration: 'none',
@@ -354,7 +308,8 @@ export default function Header() {
                 {languages.map((lang) => (
                   <a
                     key={lang.code}
-                    href={lang.link}
+                    href={`#${lang.page}`}
+                    onClick={(e) => { handleNavClick(e, lang.page); setIsLanguageOpen(false); }}
                     style={{
                       display: 'block',
                       padding: '0.4rem 1rem',
@@ -389,7 +344,7 @@ export default function Header() {
       }}>
         {/* Logo */}
         <div className="logo" style={{ flexShrink: 0 }}>
-          <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <a href="#home" onClick={(e) => handleNavClick(e, 'home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'linear-gradient(135deg, #DA2B1F 0%, #333F4C 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: '1.3rem', boxShadow: '0 4px 12px rgba(218, 43, 31, 0.3)' }}>
               M
             </div>
@@ -425,7 +380,8 @@ export default function Header() {
                 onMouseLeave={() => item.hasSubmenu && setOpenSubmenu(null)}
               >
                 <a
-                  href={item.link}
+                  href={`#${item.page}`}
+                  onClick={(e) => handleNavClick(e, item.page)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -477,34 +433,22 @@ export default function Header() {
                           borderRight: idx < item.submenu.columns.length - 1 ? '1px solid #E5E7EB' : 'none'
                         }}>
                           {column.headline && (
-                            column.headlineLink ? (
-                              <a
-                                href={column.headlineLink}
-                                style={{
-                                  display: 'block',
-                                  fontWeight: 'bold',
-                                  color: '#333F4C',
-                                  textDecoration: 'none',
-                                  fontSize: '16px',
-                                  marginBottom: '0px',
-                                  padding: '7px 7px 0px 20px',
-                                  borderBottom: 'dotted 1px #eeeeee'
-                                }}
-                              >
-                                {column.headline}
-                              </a>
-                            ) : (
-                              <p style={{
+                            <a
+                              href={`#${column.page || item.page}`}
+                              onClick={(e) => handleNavClick(e, column.page || item.page)}
+                              style={{
+                                display: 'block',
                                 fontWeight: 'bold',
                                 color: '#333F4C',
+                                textDecoration: 'none',
                                 fontSize: '16px',
-                                margin: '0 0 0px 0',
+                                marginBottom: '0px',
                                 padding: '7px 7px 0px 20px',
                                 borderBottom: 'dotted 1px #eeeeee'
-                              }}>
-                                {column.headline}
-                              </p>
-                            )
+                              }}
+                            >
+                              {column.headline}
+                            </a>
                           )}
                           <ul style={{
                             listStyle: 'none',
@@ -516,7 +460,8 @@ export default function Header() {
                                 borderBottom: 'solid 1px #eeeeee'
                               }}>
                                 <a
-                                  href={subItem.link}
+                                  href={`#${subItem.page || item.page}`}
+                                  onClick={(e) => handleNavClick(e, subItem.page || item.page)}
                                   style={{
                                     display: 'block',
                                     padding: '7px 7px 7px 20px',
@@ -627,7 +572,8 @@ export default function Header() {
               {topMenuItems.map((item) => (
                 <a
                   key={item.label}
-                  href={item.link}
+                  href={`#${item.page}`}
+                  onClick={(e) => handleNavClick(e, item.page)}
                   style={{
                     color: '#4B5563',
                     textDecoration: 'none',
@@ -650,7 +596,8 @@ export default function Header() {
                   padding: '0.75rem 0'
                 }}>
                   <a
-                    href={item.link}
+                    href={`#${item.page}`}
+                    onClick={(e) => handleNavClick(e, item.page)}
                     style={{
                       color: '#333F4C',
                       textDecoration: 'none',
@@ -704,7 +651,8 @@ export default function Header() {
                           {column.items && column.items.map((subItem, iIdx) => (
                             <li key={iIdx} style={{ borderBottom: 'solid 1px #eeeeee' }}>
                               <a
-                                href={subItem.link}
+                                href={`#${subItem.page || item.page}`}
+                                onClick={(e) => handleNavClick(e, subItem.page || item.page)}
                                 style={{
                                   display: 'block',
                                   padding: '7px 7px 7px 20px',
@@ -761,7 +709,8 @@ export default function Header() {
                   {languages.map((lang) => (
                     <a
                       key={lang.code}
-                      href={lang.link}
+                      href={`#${lang.page}`}
+                      onClick={(e) => { handleNavClick(e, lang.page); setIsMobileLanguageOpen(false); }}
                       style={{
                         display: 'block',
                         padding: '0.4rem 0',
