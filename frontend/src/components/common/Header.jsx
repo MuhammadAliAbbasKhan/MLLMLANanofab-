@@ -1,8 +1,9 @@
-// src/components/Header.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Globe, Menu, X, ChevronDown, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Header({ currentPage, setCurrentPage, currentUser, onOpenAuth, onOpenSearch, onLogout }) {
+  const { language, changeLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
@@ -313,13 +314,13 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
                 cursor: 'pointer',
                 color: '#4B5563',
                 fontSize: '0.8rem',
-                fontWeight: '400',
+                fontWeight: '700',
                 fontFamily: 'Source Sans Pro, sans-serif',
                 padding: '0.25rem 0.5rem'
               }}
             >
-              <Globe size={14} />
-              <span>EN</span>
+              <Globe size={14} color="#DA2B1F" />
+              <span>🌐 {language}</span>
               <ChevronDown size={12} />
             </button>
             {isLanguageOpen && (
@@ -328,33 +329,41 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
                 top: '100%',
                 right: 0,
                 background: 'white',
-                borderRadius: '4px',
+                borderRadius: '6px',
                 boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
                 padding: '0.5rem 0',
-                minWidth: '140px',
+                minWidth: '150px',
                 marginTop: '0.25rem',
-                zIndex: 100
+                zIndex: 9999,
+                border: '1px solid #CBD5E1'
               }}>
-                {languages.map((lang) => (
-                  <a
+                {[
+                  { code: 'EN', name: 'English' },
+                  { code: 'DE', name: 'Deutsch' },
+                  { code: 'ZH', name: '简体中文' },
+                  { code: 'JA', name: '日本語' },
+                  { code: 'ES', name: 'Español' },
+                  { code: 'FR', name: 'Français' }
+                ].map((lang) => (
+                  <button
                     key={lang.code}
-                    href={`#${lang.page}`}
-                    onClick={(e) => { handleNavClick(e, lang.page); setIsLanguageOpen(false); }}
+                    onClick={() => { changeLanguage(lang.code); setIsLanguageOpen(false); }}
                     style={{
                       display: 'block',
-                      padding: '0.4rem 1rem',
-                      color: lang.active ? '#DA2B1F' : '#4B5563',
-                      textDecoration: 'none',
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '0.45rem 1rem',
+                      color: language === lang.code ? '#DA2B1F' : '#333F4C',
+                      background: language === lang.code ? '#FFF5F5' : 'transparent',
+                      border: 'none',
                       fontSize: '0.8rem',
-                      fontWeight: lang.active ? '600' : '400',
-                      transition: 'background 0.3s',
-                      fontFamily: 'Source Sans Pro, sans-serif'
+                      fontWeight: language === lang.code ? '700' : '500',
+                      cursor: 'pointer',
+                      transition: 'background 0.2s'
                     }}
-                    onMouseEnter={(e) => e.target.style.background = '#F3F4F6'}
-                    onMouseLeave={(e) => e.target.style.background = 'transparent'}
                   >
-                    {lang.code}
-                  </a>
+                    {lang.name} ({lang.code})
+                  </button>
                 ))}
               </div>
             )}
@@ -770,24 +779,33 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
                 />
               </button>
               {isMobileLanguageOpen && (
-                <div style={{ paddingLeft: '2rem', marginTop: '0.5rem' }}>
-                  {languages.map((lang) => (
-                    <a
+                <div style={{ paddingLeft: '1.5rem', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  {[
+                    { code: 'EN', name: 'English' },
+                    { code: 'DE', name: 'Deutsch' },
+                    { code: 'ZH', name: '简体中文' },
+                    { code: 'JA', name: '日本語' },
+                    { code: 'ES', name: 'Español' },
+                    { code: 'FR', name: 'Français' }
+                  ].map((lang) => (
+                    <button
                       key={lang.code}
-                      href={`#${lang.page}`}
-                      onClick={(e) => { handleNavClick(e, lang.page); setIsMobileLanguageOpen(false); }}
+                      onClick={() => { changeLanguage(lang.code); setIsMobileLanguageOpen(false); setIsMobileMenuOpen(false); }}
                       style={{
                         display: 'block',
-                        padding: '0.4rem 0',
-                        color: lang.active ? '#DA2B1F' : '#4B5563',
-                        textDecoration: 'none',
+                        textAlign: 'left',
+                        padding: '0.4rem 0.6rem',
+                        color: language === lang.code ? '#DA2B1F' : '#4B5563',
+                        background: language === lang.code ? '#FFF5F5' : 'transparent',
+                        borderRadius: '4px',
+                        border: 'none',
                         fontSize: '0.85rem',
-                        fontWeight: lang.active ? '600' : '400',
-                        fontFamily: 'Source Sans Pro, sans-serif'
+                        fontWeight: language === lang.code ? '700' : '500',
+                        cursor: 'pointer'
                       }}
                     >
-                      {lang.code}
-                    </a>
+                      {lang.name} ({lang.code})
+                    </button>
                   ))}
                 </div>
               )}

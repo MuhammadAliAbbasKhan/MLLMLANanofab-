@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ToastProvider } from './context/ToastContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { ToastNotification } from './components/common/ToastNotification';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
@@ -179,8 +180,10 @@ function MainApp() {
 
 export default function App() {
   return (
-    <ToastProvider>
-      <MainApp />
-    </ToastProvider>
+    <LanguageProvider>
+      <ToastProvider>
+        <MainApp />
+      </ToastProvider>
+    </LanguageProvider>
   );
 }
