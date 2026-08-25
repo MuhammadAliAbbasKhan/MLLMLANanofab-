@@ -227,16 +227,16 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 999,
-        background: isScrolled ? 'white' : 'transparent',
-        boxShadow: isScrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
+        zIndex: 9999,
+        background: 'white',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
         transition: 'all 0.3s ease'
       }}
     >
       {/* Top Bar - Above Header */}
       <div style={{
-        background: isScrolled ? 'white' : 'rgba(255,255,255,0.9)',
-        borderBottom: isScrolled ? '1px solid #E5E7EB' : '1px solid rgba(51,63,76,0.1)',
+        background: 'white',
+        borderBottom: '1px solid #E5E7EB',
         padding: '0.25rem 0',
         display: 'none',
         '@media (min-width: 1024px)': { display: 'block' }
@@ -248,7 +248,7 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
           display: 'flex',
           justifyContent: 'flex-end',
           alignItems: 'center',
-          gap: '1.5rem'
+          gap: '1.25rem'
         }}>
           {topMenuItems.map((item) => (
             <a
@@ -269,6 +269,36 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
               {item.label}
             </a>
           ))}
+
+          {/* Auth buttons in Top Bar */}
+          {currentUser ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <span style={{ fontSize: '0.8rem', color: '#DA2B1F', fontWeight: 700 }}>
+                👤 {currentUser.email || currentUser.name || 'User'}
+              </span>
+              <button
+                onClick={onLogout}
+                style={{ background: '#333F4C', color: 'white', border: 'none', borderRadius: '4px', padding: '0.2rem 0.6rem', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <button
+                onClick={(e) => { e.preventDefault(); if (setCurrentPage) setCurrentPage('login'); }}
+                style={{ background: 'transparent', border: '1px solid #CBD5E1', borderRadius: '4px', padding: '0.2rem 0.6rem', color: '#333F4C', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer' }}
+              >
+                Sign In
+              </button>
+              <button
+                onClick={(e) => { e.preventDefault(); if (setCurrentPage) setCurrentPage('signup'); }}
+                style={{ background: '#DA2B1F', border: 'none', borderRadius: '4px', padding: '0.2rem 0.6rem', color: 'white', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer' }}
+              >
+                Sign Up
+              </button>
+            </div>
+          )}
 
           {/* Language Switcher in Top Bar */}
           <div style={{ position: 'relative' }}>

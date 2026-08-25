@@ -128,7 +128,7 @@ function MainApp() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#0A192F', color: '#F8FAFC' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'white', color: '#1D252E' }}>
       <Header
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
@@ -138,7 +138,10 @@ function MainApp() {
         onLogout={handleLogout}
       />
 
-      <main style={{ flex: 1, background: '#0A192F' }}>
+      {/* Spacer to prevent page content from merging with the fixed header */}
+      <div style={{ height: '115px' }} />
+
+      <main style={{ flex: 1, background: 'white' }}>
         {renderPage()}
       </main>
 
