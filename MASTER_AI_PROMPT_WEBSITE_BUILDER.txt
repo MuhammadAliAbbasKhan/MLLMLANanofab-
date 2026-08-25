@@ -4,7 +4,7 @@ MASTER AI PROMPT: FULL-STACK WEBSITE CLONE & APPLICATION BUILDER BLUEPRINT
 
 [SYSTEM ROLE INSTRUCTION]
 You are an expert Senior Full-Stack Software Engineer, Physics Engine Architect, and UI/UX Designer.
-Your task is to build a complete, 100% production-ready web application project that replicates the exact design, layout, admin security, dual database sync, and interactive physics canvas for MLLMLANanofab (Maskless Laser Lithography, Direct Write Lithography & Thermal Scanning Probe Nanofabrication - Heidelberg Instruments Replica).
+Your task is to build a complete, 100% production-ready web application project that replicates the exact design, layout, admin security, dual database sync, consolidated Stripe pricing checkout, and interactive physics canvas for MLLMLANanofab (Maskless Laser Lithography, Direct Write Lithography & Thermal Scanning Probe Nanofabrication - Heidelberg Instruments Replica).
 
 Follow every technical specification and implementation detail below precisely.
 
@@ -12,36 +12,40 @@ Follow every technical specification and implementation detail below precisely.
 1. HEADER & FOOTER REPLICA SPECIFICATIONS (HEIDELBERG INSTRUMENTS / MLLMLANANOFAB LAYOUT)
 ================================================================================
 A. HEADER DESIGN & NAVIGATION:
-   - Brand Logo: MLLMLANanofab bold sapphire & laser-cyan typography paired with a geometric laser optics aperture SVG icon.
-   - Tagline: "Precision Lithography & Nanofabrication Solutions" styled in clean cyan typography.
-   - Top Control Bar:
+   - Brand Logo: MLLMLANanofab bold sapphire & laser-cyan typography paired with a geometric laser optics aperture badge.
+   - Tagline: "Maskless Lithography Systems" styled in clean cyan typography.
+   - Top Control Bar (Solid White Backdrop #FFFFFF, 1px solid #E5E7EB border):
      * Quick Search Modal trigger with magnifying glass icon.
-     * Language Switcher toggle: [ DE | EN ] button pill component with active language highlight.
-     * Authenticated User Widget: Shows active user badge (e.g. "Dr. Hans Weber (DEMO)", plan tier badge: FREE / ACADEMIC / COMMERCIAL / ENTERPRISE / ADMIN), and a red "Log Out" button. If logged out, displays "Sign In / Register" button.
-   - Primary Navigation Bar (Sleek dark translucent glass / soft sapphire overlay #0A192F):
-     * Main Links: "Home", "Products", "Technologies", "Applications", "Process & Support", "Company", "DESIGNER", "Admin 🛡️".
+     * Language Switcher toggle: [ EN | 简体中文 | 日本語 | 한국어 | Español | Français ].
+     * Authenticated User & Auth Widget:
+       - Logged Out: Displays clean "Sign In" and red "Sign Up" action buttons.
+       - Logged In: Displays active user badge (e.g. "👤 alexander@cleanroom-lab.org"), active subscription status, and a dark "Sign Out" button.
+   - Primary Navigation Bar (White backdrop with 0 2px 12px rgba(0,0,0,0.08) shadow):
+     * Main Internal Links: "Home", "Products & Systems", "Applications", "DESIGNER Suite", "Shop & Licenses", "Service & Support", "Company".
      * Dropdowns for Products (Maskless Aligners MLA 150/300, Direct Write DWL 66+, NanoFrazor t-SPL, Micro-Optics Grayscale Systems).
-     * Dropdowns for Technologies (Maskless Lithography, Thermal Scanning Probe, Direct Laser Writing, Grayscale Patterning).
      * Dropdowns for Applications (Quantum Devices, 2D Materials, Micro-Optics, MEMS & Sensors, Semiconductor ICs, Nanofluidics).
      * Dropdowns for Support (Process Engineering Handbook, Tutorials & Tips, FAQ, System Calibration, Maintenance Guides).
      * 100% Mobile Responsive with slide-out drawer menu on mobile viewports.
+   - Header Spacing & Overlap Prevention:
+     * Header container is fixed (`position: fixed`, `top: 0`, `zIndex: 9999`).
+     * A header spacer element `<div style={{ height: '115px' }} />` is placed in `App.jsx` right under `<Header />` to guarantee 0% content merging or text bleeding under fixed header on all desktop and mobile viewports.
 
-B. FOOTER DESIGN (SOFT DARK SAPPHIRE BACKDROP #070F1E):
+B. FOOTER DESIGN (SOURCE SANS PRO TYPOGRAPHY, SOFT GRAY #D0D4E3 BACKDROP):
    - 4-Column Layout:
-     1. Column 1 (Brand & Newsletter & Contact): Metallic cyan MLLMLANanofab logo, "Sign up for our Nanofabrication Newsletter *", email input, cyan "Submit" button, "Contact us" / "Send a message", Social icons (LinkedIn, YouTube, X, ResearchGate with "Follow us on social media").
+     1. Column 1 (Get in Touch & Sales Request): Sales Request button, Subscribe Newsletter form, Social Media icons (LinkedIn, Bluesky, YouTube).
      2. Column 2 (Products & Systems): Maskless Aligners (MLA 150, MLA 300, µMLA), Direct Write Systems (DWL 66+, DWL 2000 GS), NanoFrazor t-SPL, Grayscale Lithography Tools, Micro-Optics Fabrication Systems.
      3. Column 3 (Applications): Quantum Technologies, 2D Materials & Graphene, Micro-Optics & Photonics, MEMS & Microfluidics, Semiconductor Packaging, Advanced Materials Science.
-     4. Column 4 (Legal & Corporate): UPPERCASE links for "LEGAL NOTICE", "PRIVACY STATEMENT", "TERMS & CONDITIONS", "SERVICE SPECIFICATION", "HOW TO ORDER", Copyright © 2026 MLLMLANanofab GmbH.
+     4. Column 4 (Legal Links & GDPR): Links for "Legal Notice", "Data Protection", "Terms and Conditions", Cookie Settings, AI Translation Disclaimer, Copyright © 2026 MLLMLANanofab GmbH.
 
 ================================================================================
 2. FRONTEND ARCHITECTURE & 2D PHYSICS SIMULATION ENGINE
 ================================================================================
 - Stack: React 18 + Vite 5 SPA (JavaScript), Lucide Icons, Axios API Client, HTML5 Canvas 2D.
-- SPA Routing: State-driven page manager in App.jsx rendering 24 sub-routes (Home, Products, Technologies, Applications, Support, Company, Designer, Shop, Admin Dashboard, Legal Notice, Privacy Statement, Terms, Service Specifications, How to Order, Functions, Benefits, Basics, Videos, Brochure, Partners, Testimonials, System Requirements, Demo, Tutorials, FAQ, Handbook, Changelog).
-- Toast Notification System (ToastNotification.jsx & ToastContext.jsx): Intercepts Django server messages returned in API JSON responses and displays color-coded popup alerts (success green, error red, warning amber, info cyan).
+- SPA Routing: State-driven page manager in App.jsx rendering sub-routes (Home, Products, Applications, Designer, Shop, Support, About, Admin Dashboard, Premium Consultation, Premium Services Hub, Legal Notice, Privacy Statement, Terms, Auth).
+- Toast Notification System (ToastNotification.jsx & ToastContext.jsx): Intercepts server messages returned in API payloads and displays color-coded popup alerts (success green, error red, warning amber, info cyan).
 - Modal System:
-  * AuthModal.jsx: Sign In / Registration modal with plan tier selector (Academic $149/mo, Commercial $499/mo, Enterprise $999/mo).
-  * CheckoutModal.jsx: Stripe credit card payment modal with plan summary.
+  * AuthPage.jsx: Sign In / Registration modal.
+  * CheckoutModal.jsx: Single centralized Stripe credit card payment modal with tier selection ($100 USD, $150 USD, $200 USD) and real input data validation.
   * TrialModal.jsx: Free lithography evaluation & system trial license request form.
   * SearchModal.jsx: Instant global search dialog.
 
@@ -54,64 +58,56 @@ B. FOOTER DESIGN (SOFT DARK SAPPHIRE BACKDROP #070F1E):
   * Direct Writing Animation: Visual beam scanning across substrate displaying real-time resist exposure energy map.
 
 ================================================================================
-3. DJANGO BACKEND & MESSAGES FRAMEWORK INTEGRATION
+3. PRICING ARCHITECTURE, FREE DESIGNER POLICY & STRIPE CHECKOUT ENGINE
+================================================================================
+- Free Basic DESIGNER Suite Policy:
+  * The basic DESIGNER Suite (2D Optics simulator canvas, diffraction spot sizing, laser dosage calculations, and basic GDSII CAD pre-checking) is 100% FREE for all users without forced payment.
+  * Clear callout banner on Designer & Shop pages: *"DESIGNER Suite is 100% Free for Basic Use! You only pay when activating Premium Recipe Exports, 2.5D Profiling, or Wafer Fabs."*
+
+- Consolidated Single Form Pricing Tiers:
+  * **Basic Premium Service**: **$100 USD / month** ($80 USD yearly)
+    - Includes: Free 2D Optics Simulator access, GDSII & OASIS file pre-checker, up to 10 exported recipe files / mo, Standard Email & Ticket Support.
+  * **Professional Premium Service**: **$150 USD / month** ($120 USD yearly)
+    - Includes: Everything in $100 Tier + 2.5D Grayscale depth & profile engine, Unlimited CAD GDSII recipe exports, Priority Application Engineer support.
+  * **Enterprise Premium Service**: **$200 USD / month** ($160 USD yearly)
+    - Includes: Multi-user site license, direct SECS/GEM fab automation API, SQLite + MongoDB Atlas Cloud sync, 24/7 SLA Dedicated Cleanroom Consultant.
+
+- Centralized Payment Checkout & Real Data Validation (`CheckoutModal.jsx`):
+  * All "Explore Premium Features" and "Select $100 / $150 / $200 USD Plan" buttons route to a SINGLE centralized Stripe checkout modal (`CheckoutModal.jsx`).
+  * Real Data Input Validation: Enforces required fields before processing:
+    - Cardholder Full Name (at least 3 chars)
+    - Valid Email Address (must contain `@`)
+    - Credit Card Number (15-16 valid numeric digits)
+    - Expiration Date (`MM/YY` format)
+    - Security CVC Code (3-4 digits)
+  * Displays inline error alert banners if validation fails.
+
+- Active Monthly Subscription State & Re-Payment Prevention:
+  * Stores subscription state (`is_active: true`, `plan_tier`, `payment_reference`, `paid_date`) in user state and `localStorage`.
+  * On the Shop Page, active monthly subscribers see a green `"✓ Active Premium Subscriber for This Month"` banner and `"✓ Active Plan (No Re-payment)"` buttons, preventing accidental duplicate charges.
+
+- Subscriber Premium Services Hub (`PremiumServicesPage.jsx`):
+  * Dedicated cleanroom service order portal for active subscribers.
+  * Features ticket submission form for GDSII layout conversions, 2.5D grayscale depth profiles, and SECS/GEM fab automation.
+  * Real-time cleanroom service order tracking with assigned application engineer status.
+
+================================================================================
+4. DJANGO BACKEND & DUAL DATABASE ENGINE: SQLITE + MONGODB ATLAS CLOUD SYNC
 ================================================================================
 - Stack: Python 3.12, Django 5.x, Django REST Framework (DRF), WhiteNoise WSGI static server, Gunicorn.
 - Django Messages Extractor (`api/views.py`):
-  Every REST API view must run `extract_django_messages(request)` to extract messages queued in `django.contrib.messages` and return them inside the JSON payload:
-  ```python
-  def extract_django_messages(request, default_level='info', fallback_msg=None):
-      msg_list = []
-      storage = messages.get_messages(request)
-      for msg in storage:
-          level_tag = msg.level_tag or default_level
-          if level_tag == 'danger': level_tag = 'error'
-          msg_list.append({'level': level_tag, 'message': str(msg)})
-      if not msg_list and fallback_msg:
-          msg_list.append({'level': default_level, 'message': fallback_msg})
-      return msg_list
-  ```
-
+  Every REST API view extracts messages queued in `django.contrib.messages` and returns them inside JSON payload for Toast Notification alerts.
+- Dual Database Sync (`db_mongo.py`):
+  * Primary Database: Local SQLite database (`db.sqlite3`).
+  * Cloud Database: Real-time sync to MongoDB Cloud Atlas (`mllmlananofab_db`) using PyMongo driver.
 - Admin Authorization & Passcode System:
-  * Executive Control Console Endpoint: `/api/v1/admin/analytics/`, `/api/v1/admin/users/`, `/api/v1/admin/users/update-plan/`, `/api/v1/admin/trials/`, `/api/v1/admin/inquiries/`, `/api/v1/admin/service-requests/`.
+  * Executive Control Console Endpoint: `/api/v1/admin/analytics/`.
   * Header Authentication: `X-Admin-Passcode` header checked by `verify_admin_access(request)`.
   * Admin Secret Passcode: `aliabbas1234578!`.
-  * Admin Credentials: `admin@mllmlananofab.com` with password `aliabbas1234578!`.
 
 ================================================================================
-4. DUAL DATABASE ENGINE: SQLITE + MONGODB ATLAS CLOUD SYNC
+5. GITHUB REPOSITORY & GIT WORKFLOW
 ================================================================================
-- Primary Database: Local SQLite database (`db.sqlite3`) for Django ORM models.
-- Cloud Database: Real-time sync to MongoDB Cloud Atlas (`mllmlananofab_db`) using PyMongo driver (`api/db_mongo.py`).
-
-- Collections & Schemas:
-  1. `UserSubscription` -> MongoDB Collections: `mllmlananofab_users` & `mllmlananofab_subscriptions`
-     - Fields: username, email, password, plan_tier ('academic', 'commercial', 'enterprise'), billing_cycle ('monthly', 'yearly'), is_active (boolean), payment_reference, stripe_customer_id, stripe_payment_intent_id.
-  2. `TrialRequest` -> MongoDB Collection: `mllmlananofab_trials`
-     - Fields: full_name, email, company, software_choice, comments, created_at.
-  3. `ContactInquiry` -> MongoDB Collection: `mllmlananofab_inquiries`
-     - Fields: name, email, subject, message, created_at.
-  4. `OpticalServiceRequest` -> MongoDB Collection: `mllmlananofab_service_requests`
-     - Fields: user_name, user_email, company_name, project_title, service_type, industry, wavelength_range, system_specifications, status, admin_notes.
-  5. `SoftwareProduct` -> MongoDB Collection: `mllmlananofab_products`
-     - Fields: name, code_name, description, category, version.
-
-- Sync Implementation (`db_mongo.py`):
-  When any record is saved via Django views, automatically invoke helper functions:
-  `sync_user_to_mongodb()`, `sync_trial_request_to_mongodb()`, `sync_contact_inquiry_to_mongodb()`, `sync_subscription_to_mongodb()`, `sync_service_request_to_mongodb()`.
-
-================================================================================
-5. STRIPE PAYMENT CHECKOUT & BILLING ENGINE
-================================================================================
-- Endpoint `/api/v1/stripe/create-payment-intent/`: Generates Stripe PaymentIntent (`pi_mllmla_...`) with client secret for license tier checkouts ($149 Academic, $499 Commercial, $999 Enterprise with 20% yearly discount).
-- Endpoint `/api/v1/subscribe/`: Activates license, updates user plan tier in SQLite + MongoDB, generates payment reference code (`STRIPE-MLLMLA-XXXXXX`).
-- Endpoint `/api/v1/stripe/webhook/`: Listens for `payment_intent.succeeded` events and automatically upgrades subscription status.
-
-================================================================================
-6. GITHUB REPOSITORY CREATION & GIT WORKFLOW
-================================================================================
-Execute the following step-by-step terminal commands to initialize git and sync with GitHub remotes:
-
 ```bash
 # 1. Navigate to project root directory
 cd "d:\Batch new\1 -15 websites\mllmlananofab"
@@ -119,72 +115,15 @@ cd "d:\Batch new\1 -15 websites\mllmlananofab"
 # 2. Initialize Git Repository
 git init
 
-# 3. Create standard .gitignore file
-echo "node_modules/
-dist/
-__pycache__/
-*.pyc
-venv/
-.env
-db.sqlite3
-staticfiles/
-.DS_Store" > .gitignore
-
-# 4. Add all project source files
+# 3. Add source files & commit
 git add .
+git commit -m "feat: complete full-stack MLLMLANanofab website clone, consolidated $100/$150/$200 USD Stripe checkout, free designer policy, and subscriber service hub"
 
-# 5. Commit initial full-stack implementation
-git commit -m "feat: complete full-stack MLLMLANanofab website clone (Heidelberg Instruments replica), dual SQLite+MongoDB sync, lithography optics canvas, and admin console"
-
-# 6. Set main branch and link GitHub remote
+# 4. Set main branch and push
 git branch -M main
 git remote add origin https://github.com/your-username/mllmlananofab.git
-
-# 7. Push source code to GitHub repository
 git push -u origin main
 ```
-
-================================================================================
-7. PRODUCTION DEPLOYMENT STEPS
-================================================================================
-A. Frontend SPA Deployment (Vercel / Netlify):
-   - Command: `cd frontend && npm install && npm run build`
-   - Build Output Directory: `frontend/dist`
-   - Env Variable: `VITE_API_BASE_URL=https://your-backend.onrender.com/api/v1`
-
-B. Backend Django Deployment (Render / Railway):
-   - Procfile: `web: gunicorn mllmlananofab_backend.wsgi:application`
-   - Command: `cd backend && pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
-   - Env Variables:
-     - `SECRET_KEY=production-django-secret-key-2026`
-     - `DEBUG=False`
-     - `MONGODB_URI=mongodb+srv://<db_user>:<db_password>@cluster0.mongodb.net/mllmlananofab_db?retryWrites=true&w=majority`
-     - `ADMIN_PASSCODE=aliabbas1234578!`
-     - `ALLOWED_HOSTS=.onrender.com,.vercel.app,localhost`
-
-================================================================================
-8. ADVANCED ARCHITECTURAL RULES & SECURITY STANDARDS
-================================================================================
-A. GLOBAL LAYOUT SCOPING (SINGLE HEADER & FOOTER):
-   - Individual page component files MUST NOT contain internal <header>, <footer>, or top utility bar markup.
-   - All layout wrapping must be delegated strictly to the root App.jsx component using single <Header> and <Footer> instances to eliminate duplicated UI header/footer bars across navigation transitions.
-
-B. VITE NAMED & DEFAULT IMPORT SYNTAX RULES:
-   - Page files imported in App.jsx via named imports MUST export both named and default exports:
-     ```javascript
-     export const PageName = ComponentName;
-     export default ComponentName;
-     ```
-
-C. PROTECTED ROUTES & PREMIUM CONSULTATION SPECIFICATION PORTAL:
-   - Guard premium features and nanofabrication tools (PremiumConsultationPage.jsx) behind authentication gates.
-   - Unauthenticated visitors encounter a 🔒 Premium Access Required gate that opens AuthModal.jsx.
-
-D. SECURITY HARDENING & NO HARDCODED DEMO / ADMIN CREDENTIALS:
-   - Database-Driven Admin Authorization: Admin authorization must rely on Django database fields (`is_admin = models.BooleanField(default=False)`) and standard database query lookups. Client-side input fields must never expose default admin emails or secret passcodes.
-
-E. STRICT PAID SUBSCRIPTION & STRIPE CHECKOUT FLOW:
-   - Registration flows enforce paid plan selection (Academic $149/mo, Commercial $499/mo, Enterprise $999/mo) with no unverified free plan bypass.
 
 ================================================================================
 END OF MASTER BLUEPRINT PROMPT
