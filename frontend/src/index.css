@@ -25,12 +25,16 @@
   padding: 0;
 }
 
-body {
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: var(--font-body);
   background-color: var(--primary-dark);
   color: var(--text-main);
   line-height: 1.6;
-  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,6 +53,13 @@ button {
   outline: none;
   font-family: var(--font-body);
   transition: var(--transition-fast);
+  touch-action: manipulation;
+}
+
+/* Image, SVG & Canvas Mobile Responsiveness */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Responsive visibility helper classes */
@@ -62,6 +73,13 @@ button {
   .desktop-only-flex { display: none !important; }
   .desktop-only-block { display: none !important; }
   .mobile-only { display: flex !important; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
 
 /* Glassmorphism utility */
