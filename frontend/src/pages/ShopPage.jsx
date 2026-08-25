@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import { Check, ShoppingCart, ShieldCheck, Zap } from 'lucide-react';
+import { Check, ShoppingCart, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 
-export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout }) => {
+export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout, setCurrentPage }) => {
   const [billingCycle, setBillingCycle] = useState('monthly');
   const { addToast } = useToast();
 
+  const isSubscribed = currentUser && currentUser.is_active;
+
   const handleSelectPlan = (planKey) => {
+    if (isSubscribed) {
+      if (addToast) addToast(`You are already an active subscriber to ${currentUser.plan_tier || 'Premium Services'} for this month!`, 'info');
+      if (setCurrentPage) setCurrentPage('premium-services');
+      return;
+    }
+
     if (!currentUser) {
-      if (addToast) addToast('Please sign in or create an account to purchase a service plan.', 'info');
+      if (addToast) addToast('Please sign in or create an account to activate a premium service tier.', 'info');
       onOpenAuth();
     } else {
       onOpenCheckout();
@@ -33,33 +41,53 @@ export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout }) => {
             Transparent Pricing & Premium Services
           </span>
           <h1 style={{ fontSize: '2.4rem', fontWeight: 'bold', margin: '0.4rem 0' }}>
-            MLLMLANanofab Premium Service Plans
+            MLLMLANanofab Service Plans
           </h1>
           <p style={{ fontSize: '1.05rem', opacity: 0.9, maxWidth: '750px', margin: 0 }}>
-            The basic DESIGNER tool is 100% FREE for all users. Upgrade to Premium Services ($100 USD, $150 USD, $200 USD) for advanced GDSII conversions and cleanroom cloud sync.
+            The basic DESIGNER tool is 100% FREE for all users. You only pay when activating Premium Recipe Exports, 2.5D Profiling, or Wafer Fabs ($100 USD, $150 USD, $200 USD).
           </p>
         </div>
       </section>
 
-      {/* Free Tier Notice & Toggle */}
+      {/* Free Tier Banner & Subscription Status */}
       <section style={{ padding: '3rem 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
           
-          <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '8px', padding: '1.25rem 1.5rem', marginBottom: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <Zap size={24} color="#2563EB" />
-              <div>
-                <strong style={{ color: '#1E40AF', fontSize: '1rem' }}>DESIGNER Suite is Free for Basic Use!</strong>
-                <div style={{ color: '#3B82F6', fontSize: '0.85rem', marginTop: '2px' }}>You only pay when activating Premium Recipe Exports, 2.5D Profiling, or Wafer Fabs.</div>
+          {isSubscribed ? (
+            <div style={{ background: '#ECFDF5', border: '2px solid #10B981', borderRadius: '8px', padding: '1.5rem 2rem', marginBottom: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <CheckCircle2 size={28} color="#10B981" />
+                <div>
+                  <strong style={{ color: '#065F46', fontSize: '1.1rem' }}>Active Premium Subscriber for This Month!</strong>
+                  <div style={{ color: '#047857', fontSize: '0.85rem', marginTop: '2px' }}>
+                    Active Plan: <strong>{currentUser.plan_tier || 'Premium Service'}</strong> • Payment Ref: {currentUser.payment_reference || 'STRIPE-OK'} (No duplicate re-payment required!)
+                  </div>
+                </div>
               </div>
+              <button
+                onClick={() => { if (setCurrentPage) setCurrentPage('premium-services'); }}
+                style={{ background: '#10B981', color: 'white', border: 'none', borderRadius: '6px', padding: '0.65rem 1.25rem', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer' }}
+              >
+                Access Premium Services Hub →
+              </button>
             </div>
-            <button
-              onClick={() => handleSelectPlan('basic')}
-              style={{ background: '#2563EB', color: 'white', border: 'none', borderRadius: '4px', padding: '0.5rem 1.25rem', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer' }}
-            >
-              Explore Premium Features
-            </button>
-          </div>
+          ) : (
+            <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '8px', padding: '1.25rem 1.5rem', marginBottom: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <Zap size={24} color="#2563EB" />
+                <div>
+                  <strong style={{ color: '#1E40AF', fontSize: '1rem' }}>DESIGNER Suite is 100% Free for Basic Use!</strong>
+                  <div style={{ color: '#3B82F6', fontSize: '0.85rem', marginTop: '2px' }}>You only pay when activating Premium Recipe Exports, 2.5D Profiling, or Wafer Fabs.</div>
+                </div>
+              </div>
+              <button
+                onClick={onOpenCheckout}
+                style={{ background: '#2563EB', color: 'white', border: 'none', borderRadius: '4px', padding: '0.5rem 1.25rem', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer' }}
+              >
+                Explore Premium Features
+              </button>
+            </div>
+          )}
 
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', background: 'white', borderRadius: '30px', padding: '0.3rem', border: '1px solid #CBD5E1', boxShadow: '0 2px 6px rgba(0,0,0,0.05)' }}>
@@ -78,7 +106,7 @@ export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout }) => {
             </div>
           </div>
 
-          {/* Pricing Grid ($100 USD, $150 USD, $200 USD) */}
+          {/* Single Form Centralized Pricing Grid ($100 USD, $150 USD, $200 USD) */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             
             {/* Standard Service - $100 USD */}
@@ -101,11 +129,9 @@ export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout }) => {
               </div>
               <button
                 onClick={() => handleSelectPlan('basic')}
-                style={{ width: '100%', padding: '0.75rem', background: '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'background 0.3s' }}
-                onMouseEnter={(e) => e.target.style.background = '#7C8795'}
-                onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
+                style={{ width: '100%', padding: '0.75rem', background: isSubscribed ? '#10B981' : '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'background 0.3s' }}
               >
-                Select $100 USD Service Plan
+                {isSubscribed ? '✓ Active Plan (No Re-payment)' : 'Select $100 USD Service Plan'}
               </button>
             </div>
 
@@ -132,11 +158,9 @@ export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout }) => {
               </div>
               <button
                 onClick={() => handleSelectPlan('pro')}
-                style={{ width: '100%', padding: '0.75rem', background: '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'background 0.3s' }}
-                onMouseEnter={(e) => e.target.style.background = '#7C8795'}
-                onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
+                style={{ width: '100%', padding: '0.75rem', background: isSubscribed ? '#10B981' : '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'background 0.3s' }}
               >
-                Select $150 USD Service Plan
+                {isSubscribed ? '✓ Active Plan (No Re-payment)' : 'Select $150 USD Service Plan'}
               </button>
             </div>
 
@@ -160,11 +184,9 @@ export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout }) => {
               </div>
               <button
                 onClick={() => handleSelectPlan('enterprise')}
-                style={{ width: '100%', padding: '0.75rem', background: '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'background 0.3s' }}
-                onMouseEnter={(e) => e.target.style.background = '#7C8795'}
-                onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
+                style={{ width: '100%', padding: '0.75rem', background: isSubscribed ? '#10B981' : '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', cursor: 'pointer', transition: 'background 0.3s' }}
               >
-                Select $200 USD Service Plan
+                {isSubscribed ? '✓ Active Plan (No Re-payment)' : 'Select $200 USD Service Plan'}
               </button>
             </div>
 

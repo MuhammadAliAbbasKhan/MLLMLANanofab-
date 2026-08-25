@@ -16,6 +16,7 @@ import { SupportPage } from './pages/SupportPage';
 import { AboutPage } from './pages/AboutPage';
 import { AdminPage } from './pages/AdminPage';
 import { PremiumConsultationPage } from './pages/PremiumConsultationPage';
+import { PremiumServicesPage } from './pages/PremiumServicesPage';
 import { LegalPage } from './pages/LegalPage';
 import { AuthPage } from './pages/AuthPage';
 
@@ -77,7 +78,9 @@ function MainApp() {
       case 'applications':
         return <ApplicationsPage setCurrentPage={setCurrentPage} />;
       case 'shop':
-        return <ShopPage onOpenAuth={() => setCurrentPage('login')} currentUser={currentUser} onOpenCheckout={() => setIsCheckoutOpen(true)} />;
+        return <ShopPage onOpenAuth={() => setCurrentPage('login')} currentUser={currentUser} onOpenCheckout={() => setIsCheckoutOpen(true)} setCurrentPage={setCurrentPage} />;
+      case 'premium-services':
+        return <PremiumServicesPage currentUser={currentUser} onOpenCheckout={() => setIsCheckoutOpen(true)} setCurrentPage={setCurrentPage} />;
       case 'support':
         return <SupportPage />;
       case 'about':
