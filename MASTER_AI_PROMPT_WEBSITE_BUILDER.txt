@@ -4,7 +4,7 @@ MASTER AI PROMPT: FULL-STACK WEBSITE CLONE & APPLICATION BUILDER BLUEPRINT
 
 [SYSTEM ROLE INSTRUCTION]
 You are an expert Senior Full-Stack Software Engineer, Physics Engine Architect, and UI/UX Designer.
-Your task is to build a complete, 100% production-ready web application project that replicates the exact design, layout, admin security, dual database sync, consolidated Stripe pricing checkout, and interactive physics canvas for MLLMLANanofab (Maskless Laser Lithography, Direct Write Lithography & Thermal Scanning Probe Nanofabrication - Heidelberg Instruments Replica).
+Your task is to build a complete, 100% production-ready web application project that replicates the exact design, layout, admin security, dual database sync, consolidated Stripe pricing checkout, mobile-bounded authentication modals, and interactive physics canvas for MLLMLANanofab (Maskless Laser Lithography, Direct Write Lithography & Thermal Scanning Probe Nanofabrication - Heidelberg Instruments Replica).
 
 Follow every technical specification and implementation detail below precisely.
 
@@ -18,7 +18,7 @@ A. HEADER DESIGN & NAVIGATION:
      * Quick Search Modal trigger with magnifying glass icon.
      * Language Switcher toggle: [ EN | 简体中文 | 日本語 | 한국어 | Español | Français ].
      * Authenticated User & Auth Widget:
-       - Logged Out: Displays clean "Sign In" and red "Sign Up" action buttons.
+       - Logged Out: Displays clean "Sign In" and red "Sign Up" action buttons in desktop header top bar AND mobile slide-out drawer menu.
        - Logged In: Displays active user badge (e.g. "👤 alexander@cleanroom-lab.org"), active subscription status, and a dark "Sign Out" button.
    - Primary Navigation Bar (White backdrop with 0 2px 12px rgba(0,0,0,0.08) shadow):
      * Main Internal Links: "Home", "Products & Systems", "Applications", "DESIGNER Suite", "Shop & Licenses", "Service & Support", "Company".
@@ -38,16 +38,16 @@ B. FOOTER DESIGN (SOURCE SANS PRO TYPOGRAPHY, SOFT GRAY #D0D4E3 BACKDROP):
      4. Column 4 (Legal Links & GDPR): Links for "Legal Notice", "Data Protection", "Terms and Conditions", Cookie Settings, AI Translation Disclaimer, Copyright © 2026 MLLMLANanofab GmbH.
 
 ================================================================================
-2. FRONTEND ARCHITECTURE & 2D PHYSICS SIMULATION ENGINE
+2. FRONTEND ARCHITECTURE, AUTHENTICATION SYSTEM & MODAL VIEWPORT BOUNDING
 ================================================================================
 - Stack: React 18 + Vite 5 SPA (JavaScript), Lucide Icons, Axios API Client, HTML5 Canvas 2D.
 - SPA Routing: State-driven page manager in App.jsx rendering sub-routes (Home, Products, Applications, Designer, Shop, Support, About, Admin Dashboard, Premium Consultation, Premium Services Hub, Legal Notice, Privacy Statement, Terms, Auth).
 - Toast Notification System (ToastNotification.jsx & ToastContext.jsx): Intercepts server messages returned in API payloads and displays color-coded popup alerts (success green, error red, warning amber, info cyan).
-- Modal System:
-  * AuthPage.jsx: Sign In / Registration modal.
-  * CheckoutModal.jsx: Single centralized Stripe credit card payment modal with tier selection ($100 USD, $150 USD, $200 USD) and real input data validation.
-  * TrialModal.jsx: Free lithography evaluation & system trial license request form.
-  * SearchModal.jsx: Instant global search dialog.
+- Bounded Modal System & Close Cross Button Rule:
+  * All modal dialogs (AuthModal.jsx, CheckoutModal.jsx, TrialModal.jsx, SearchModal.jsx) MUST be strictly bounded to prevent going outside screen boundaries.
+  * Modal Container Styles: Enforces `maxHeight: '90vh'`, `overflowY: 'auto'`, `width: '92vw'`, `margin: 'auto'`, and `position: 'relative'`.
+  * Top-Right Close Cross Button (`✕`): Every modal features a styled circular close button (`width: 32px`, `height: 32px`, `background: #F1F5F9`) in the top-right corner that turns red (`#DA2B1F`) on hover to allow instant modal dismissal.
+  * AuthModal.jsx & AuthPage.jsx: Complete Sign In and Account Registration flow with full name, institution, email, and password validation. Automatically syncs user credentials with Django REST API & MongoDB Atlas cloud database.
 
 - 2D Interactive Maskless Lithography & Laser Optics Engine (MLAOpticsCanvas.jsx):
   * Canvas Rendering: HTML5 2D Canvas with dark cleanroom optical bench grid background (#0b1329).
@@ -117,7 +117,7 @@ git init
 
 # 3. Add source files & commit
 git add .
-git commit -m "feat: complete full-stack MLLMLANanofab website clone, consolidated $100/$150/$200 USD Stripe checkout, free designer policy, and subscriber service hub"
+git commit -m "feat: complete full-stack MLLMLANanofab website clone, consolidated $100/$150/$200 USD Stripe checkout, bounded auth modals with close cross button, free designer policy, and subscriber service hub"
 
 # 4. Set main branch and push
 git branch -M main

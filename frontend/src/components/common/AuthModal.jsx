@@ -45,12 +45,15 @@ export const AuthModal = ({ isOpen, onClose, onLoginSuccess, initialMode = 'logi
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(29, 37, 46, 0.85)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', overflowY: 'auto' }}>
-      <div style={{ background: 'white', borderRadius: '12px', maxWidth: '440px', width: '100%', padding: '2rem', boxShadow: '0 20px 50px rgba(0,0,0,0.2)', position: 'relative', border: '1px solid #E2E8F0' }}>
+      <div style={{ background: 'white', borderRadius: '12px', maxWidth: '440px', width: '92vw', maxHeight: '90vh', overflowY: 'auto', padding: '2rem 1.75rem', boxShadow: '0 20px 50px rgba(0,0,0,0.25)', position: 'relative', border: '1px solid #E2E8F0', margin: 'auto' }}>
         <button
           onClick={onClose}
-          style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: '#6B7280', cursor: 'pointer' }}
+          aria-label="Close form"
+          style={{ position: 'absolute', top: '1rem', right: '1rem', background: '#F1F5F9', border: 'none', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333F4C', cursor: 'pointer', zIndex: 10, transition: 'all 0.2s' }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#DA2B1F'; e.currentTarget.style.color = '#FFF'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = '#F1F5F9'; e.currentTarget.style.color = '#333F4C'; }}
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
