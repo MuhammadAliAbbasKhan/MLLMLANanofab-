@@ -389,16 +389,18 @@ export default function Header() {
       }}>
         {/* Logo */}
         <div className="logo" style={{ flexShrink: 0 }}>
-          <a href="https://heidelberg-instruments.com/" style={{ textDecoration: 'none' }}>
-            <img
-              src="https://heidelberg-instruments.com/wp-content/uploads/2022/07/HIMT-LOGO-21V2_rgb_bicolor_72dpi.png"
-              alt="Heidelberg Instruments"
-              style={{
-                height: '50px',
-                width: 'auto',
-                transition: 'height 0.3s'
-              }}
-            />
+          <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'linear-gradient(135deg, #DA2B1F 0%, #333F4C 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: '1.3rem', boxShadow: '0 4px 12px rgba(218, 43, 31, 0.3)' }}>
+              M
+            </div>
+            <div>
+              <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#333F4C', lineHeight: 1, letterSpacing: '-0.02em' }}>
+                MLLMLA<span style={{ color: '#DA2B1F' }}>Nanofab</span>
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#6B7280', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase', marginTop: '3px' }}>
+                Maskless Lithography Systems
+              </div>
+            </div>
           </a>
         </div>
 
@@ -413,9 +415,7 @@ export default function Header() {
             margin: 0,
             padding: 0,
             gap: '0',
-            alignItems: 'center',
-            borderBottom: '1px solid #333F4C',
-            paddingBottom: '18px'
+            alignItems: 'center'
           }}>
             {navItems.map((item) => (
               <li
@@ -429,21 +429,20 @@ export default function Header() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    padding: '20px 15px 60px 15px',
+                    padding: '12px 16px',
                     color: '#333F4C',
                     textDecoration: 'none',
                     fontSize: '15px',
-                    fontWeight: '400',
+                    fontWeight: '600',
                     transition: 'color 0.3s',
-                    fontFamily: 'Source Sans Pro, sans-serif',
-                    position: 'relative'
+                    fontFamily: 'Source Sans Pro, sans-serif'
                   }}
                   onMouseEnter={(e) => e.target.style.color = '#DA2B1F'}
                   onMouseLeave={(e) => e.target.style.color = '#333F4C'}
                 >
                   {item.label}
                   {item.hasSubmenu && (
-                    <ChevronDown size={14} style={{ marginLeft: '4px', opacity: 0.5 }} />
+                    <ChevronDown size={14} style={{ marginLeft: '4px', opacity: 0.6 }} />
                   )}
                 </a>
 
@@ -455,15 +454,15 @@ export default function Header() {
                     left: '50%',
                     transform: 'translateX(-50%)',
                     background: 'white',
-                    borderRadius: '1px',
+                    borderRadius: '8px',
                     boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
-                    padding: '0',
-                    minWidth: '900px',
-                    maxWidth: '1100px',
-                    marginTop: '0',
-                    border: '1px solid rgba(34,34,34,0.5)',
-                    width: '100vw',
-                    maxHeight: '80vh',
+                    padding: '1rem',
+                    minWidth: '820px',
+                    maxWidth: '1050px',
+                    marginTop: '0.25rem',
+                    border: '1px solid #E5E7EB',
+                    zIndex: 1000,
+                    maxHeight: '75vh',
                     overflowY: 'auto'
                   }}>
                     <div style={{

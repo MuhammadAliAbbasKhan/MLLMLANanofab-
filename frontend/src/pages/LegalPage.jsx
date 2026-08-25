@@ -1,58 +1,67 @@
 import React from 'react';
-import { ShieldCheck, FileText, Lock, ArrowLeft } from 'lucide-react';
+import { Shield, Lock, FileText } from 'lucide-react';
 
-export const LegalPage = ({ type = 'legal-notice', setCurrentPage }) => {
-  const titles = {
-    'legal-notice': 'Legal Notice (Impressum)',
-    'privacy-statement': 'Privacy Statement & GDPR Policy',
-    'terms-conditions': 'Terms & Conditions of Sale',
-    'service-specification': 'System Service Specifications',
-    'how-to-order': 'How to Order & Procurement Guide'
-  };
-
+export const LegalPage = () => {
   return (
-    <div style={{ background: '#0A192F', color: '#F8FAFC', padding: '4rem 0', minHeight: '75vh' }}>
-      <div className="container" style={{ maxWidth: '800px' }}>
-        
-        <button
-          onClick={() => setCurrentPage('home')}
-          style={{ background: 'none', border: 'none', color: '#00E5FF', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', marginBottom: '1.5rem' }}
-        >
-          <ArrowLeft size={16} /> Back to Home
-        </button>
-
-        <div className="glass-panel" style={{ padding: '3rem', borderRadius: '16px', border: '1px solid rgba(0,229,255,0.3)' }}>
-          <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#FFF', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
-            {titles[type] || 'Legal Information'}
+    <main style={{ fontFamily: 'Source Sans Pro, sans-serif', background: '#F8FAFC', color: '#1D252E', paddingTop: '80px' }}>
+      
+      {/* Banner */}
+      <section style={{
+        position: 'relative',
+        minHeight: '220px',
+        background: 'linear-gradient(135deg, #333F4C 0%, #1D252E 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '3rem 0',
+        color: 'white'
+      }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
+          <span style={{ color: '#DA2B1F', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Legal & Compliance
+          </span>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: '0.5rem 0' }}>
+            Legal Notice & Privacy Policy
           </h1>
+          <p style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: '750px', margin: 0 }}>
+            Information according to § 5 TMG, General Data Protection Regulation (GDPR compliance), and terms of service for MLLMLANanofab systems.
+          </p>
+        </div>
+      </section>
 
-          <div style={{ color: '#CBD5E1', lineHeight: 1.8, fontSize: '0.95rem' }}>
-            <p style={{ marginBottom: '1rem' }}>
-              <strong>MLLMLANanofab GmbH</strong> (Heidelberg Instruments Replica Architecture)<br />
-              Cleanroom Optics Avenue 42, 69120 Heidelberg, Germany<br />
-              Registration Court: District Court of Heidelberg HRB 704812<br />
-              VAT ID: DE 814 920 119
+      {/* Content */}
+      <section style={{ padding: '4rem 0' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem' }}>
+          
+          <div style={{ background: 'white', borderRadius: '8px', padding: '3rem', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#333F4C', marginBottom: '1rem', borderBottom: '2px solid #F1F5F9', paddingBottom: '0.5rem' }}>
+              1. Information According to § 5 TMG
+            </h2>
+            <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+              <strong>MLLMLANanofab GmbH</strong><br />
+              Laser & Nanofabrication Systems Division<br />
+              Mittelgewann 13, D-69123 Heidelberg, Germany<br />
+              Commercial Register: HRB 332194 | Registration Court: Mannheim
             </p>
 
-            <h3 style={{ color: '#FFF', fontSize: '1.2rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>1. Scope & Technology Rights</h3>
-            <p style={{ marginBottom: '1rem' }}>
-              All lithography systems, optical canvas simulations, GDSII layout pre-check algorithms, and specifications described herein conform to international laser safety (Class 1 laser enclosure) and semiconductor ISO standards.
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#333F4C', marginBottom: '1rem', borderBottom: '2px solid #F1F5F9', paddingBottom: '0.5rem' }}>
+              2. Data Protection & GDPR Compliance
+            </h2>
+            <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+              We take the protection of your personal data seriously. CAD pattern files uploaded to the DESIGNER simulator are processed locally and securely encrypted using TLS 1.3 protocol. User account data is synchronized strictly under EU GDPR data security guidelines with dual SQLite and MongoDB Atlas backup servers.
             </p>
 
-            <h3 style={{ color: '#FFF', fontSize: '1.2rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>2. Data Protection & GDPR Compliance</h3>
-            <p style={{ marginBottom: '1rem' }}>
-              Personal data collected during registration, trial requests, and Stripe payment transactions are stored securely in encrypted SQLite tables and synchronized to MongoDB Cloud Atlas over TLS 1.3. No user layout files are shared with third parties.
-            </p>
-
-            <h3 style={{ color: '#FFF', fontSize: '1.2rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>3. Order Procurement & Delivery</h3>
-            <p style={{ marginBottom: '1rem' }}>
-              Software simulation licenses are delivered instantaneously upon Stripe PaymentIntent validation. Physical cleanroom lithography tools (MLA 150, MLA 300, DWL 66+, NanoFrazor) include factory acceptance testing (FAT) and site acceptance testing (SAT).
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#333F4C', marginBottom: '1rem', borderBottom: '2px solid #F1F5F9', paddingBottom: '0.5rem' }}>
+              3. Copyright & Intellectual Property
+            </h2>
+            <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 0 }}>
+              The content, interactive simulators, and software specifications on this site are governed by the copyright laws of Germany. Reproduction, processing, or distribution outside the limits of copyright law requires written consent from MLLMLANanofab.
             </p>
           </div>
-        </div>
 
-      </div>
-    </div>
+        </div>
+      </section>
+
+    </main>
   );
 };
 

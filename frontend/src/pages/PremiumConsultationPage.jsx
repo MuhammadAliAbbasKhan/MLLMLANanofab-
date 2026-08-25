@@ -1,163 +1,116 @@
 import React, { useState } from 'react';
-import { Lock, Sliders, Send, CheckCircle2, Zap, Shield, FileText } from 'lucide-react';
+import { Calendar, Clock, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 
-export const PremiumConsultationPage = ({ currentUser, onOpenAuth }) => {
-  const [projectTitle, setProjectTitle] = useState('');
-  const [serviceType, setServiceType] = useState('Maskless Photolithography');
-  const [voltage, setVoltage] = useState('100kV');
-  const [resist, setResist] = useState('PMMA 950k');
-  const [substrate, setSubstrate] = useState('Silicon (100) Wafer');
-  const [specs, setSpecs] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export const PremiumConsultationPage = () => {
+  const [submitted, setSubmitted] = useState(false);
   const { addToast } = useToast();
-
-  if (!currentUser) {
-    return (
-      <div style={{ background: '#0A192F', minHeight: '75vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-        <div className="glass-panel" style={{ maxWidth: '440px', width: '100%', padding: '2.5rem', textAlign: 'center', border: '1px solid rgba(0, 229, 255, 0.3)' }}>
-          <div style={{ width: '56px', height: '56px', borderRadius: '14px', background: 'rgba(0,229,255,0.1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', border: '1px solid rgba(0,229,255,0.3)' }}>
-            <Lock size={28} color="#00E5FF" />
-          </div>
-          <h2 style={{ color: '#FFF', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-            🔒 Premium Access Required
-          </h2>
-          <p style={{ color: '#94A3B8', fontSize: '0.85rem', marginBottom: '1.75rem', lineHeight: 1.6 }}>
-            The Custom Nanofabrication Technical Specification Portal is reserved for authenticated research partners and commercial subscribers.
-          </p>
-          <button onClick={onOpenAuth} className="btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '0.8rem' }}>
-            Sign In or Register Account
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!projectTitle) {
-      addToast('Please enter a project title.', 'warning');
-      return;
-    }
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      addToast(`Nanofabrication project request "${projectTitle}" submitted successfully! Synced with MongoDB Atlas Cloud.`, 'success');
-      setProjectTitle('');
-      setSpecs('');
-    }, 1500);
+    setSubmitted(true);
+    addToast('Cleanroom consultation request received! An application engineer will contact you within 24 hours.', 'success');
   };
 
   return (
-    <div style={{ background: '#0A192F', color: '#F8FAFC', padding: '4rem 0' }}>
-      <div className="container">
-        
-        {/* Header */}
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#00E5FF', background: 'rgba(0, 229, 255, 0.1)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(0, 229, 255, 0.3)', marginBottom: '0.75rem' }}>
-            <Shield size={15} /> Authenticated Specification Portal
-          </div>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#FFF' }}>
-            Custom Nanofabrication <span style={{ color: '#00E5FF' }}>Project Portal</span>
+    <main style={{ fontFamily: 'Source Sans Pro, sans-serif', background: '#F8FAFC', color: '#1D252E', paddingTop: '80px' }}>
+      
+      {/* Banner */}
+      <section style={{
+        position: 'relative',
+        minHeight: '220px',
+        background: 'linear-gradient(135deg, #333F4C 0%, #1D252E 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '3rem 0',
+        color: 'white'
+      }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
+          <span style={{ color: '#DA2B1F', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Process Engineering Consultation
+          </span>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: '0.5rem 0' }}>
+            Book Application Engineering Consultation
           </h1>
-          <p style={{ color: '#CBD5E1', fontSize: '1rem', marginTop: '0.5rem' }}>
-            Configure custom direct-write, EBL, thermal probe, and micro-optics exposure specifications.
+          <p style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: '750px', margin: 0 }}>
+            Schedule a 1-on-1 session with MLLMLANanofab senior lithography engineers to review your wafer stack, resist recipe, or GDSII layout.
           </p>
         </div>
+      </section>
 
-        {/* Specification Form */}
-        <div className="glass-panel" style={{ maxWidth: '720px', margin: '0 auto', padding: '2.5rem', borderRadius: '16px', border: '1px solid rgba(0,229,255,0.3)' }}>
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 600 }}>Project Title *</label>
-              <input
-                type="text"
-                required
-                placeholder="Superconducting Qubit Array Sub-100nm Gate"
-                value={projectTitle}
-                onChange={(e) => setProjectTitle(e.target.value)}
-                style={{ width: '100%', padding: '0.65rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
-              />
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 600 }}>Service Type</label>
-                <select
-                  value={serviceType}
-                  onChange={(e) => setServiceType(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: '#142A4A', border: '1px solid rgba(0,229,255,0.3)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+      {/* Form */}
+      <section style={{ padding: '4rem 0' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ background: 'white', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0' }}>
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+                <CheckCircle2 size={48} color="#10B981" style={{ marginBottom: '1rem' }} />
+                <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#333F4C', marginBottom: '0.5rem' }}>
+                  Consultation Request Confirmed!
+                </h2>
+                <p style={{ color: '#6B7280', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                  We've reserved your slot. An MLLMLANanofab lithography specialist will reach out to confirm calendar invite & NDAs.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  style={{ padding: '0.65rem 1.5rem', background: '#333F4C', color: 'white', border: 'none', borderRadius: '4px', fontWeight: '600', cursor: 'pointer' }}
                 >
-                  <option value="Maskless Photolithography">Maskless Photolithography (MLA 150)</option>
-                  <option value="Direct Write Laser">Direct Write Laser (DWL 66+)</option>
-                  <option value="Thermal Probe SPL">Thermal Probe SPL (NanoFrazor)</option>
-                  <option value="E-Beam Mix & Match">E-Beam Lithography Mix & Match</option>
-                  <option value="Grayscale 3D Optics">Grayscale 3D Micro-Optics</option>
-                </select>
+                  Submit Another Request
+                </button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#333F4C', borderBottom: '1px solid #E2E8F0', paddingBottom: '0.75rem', marginBottom: '0.5rem' }}>
+                  Project & Contact Details
+                </h3>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 600 }}>Acceleration Voltage / Source</label>
-                <select
-                  value={voltage}
-                  onChange={(e) => setVoltage(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: '#142A4A', border: '1px solid rgba(0,229,255,0.3)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>Full Name</label>
+                    <input type="text" required placeholder="Dr. Jane Doe" style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>Institution / Organization</label>
+                    <input type="text" required placeholder="Quantum Research Lab" style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                  </div>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>Work Email Address</label>
+                  <input type="email" required placeholder="jane.doe@quantum-lab.org" style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>Primary Application Area</label>
+                  <select style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', fontSize: '0.9rem', color: '#1D252E' }}>
+                    <option>Quantum Qubits & Superconducting Circuits</option>
+                    <option>2D Materials (Graphene / MoS2)</option>
+                    <option>Micro-Optics & Grayscale 3D Topography</option>
+                    <option>MEMS & Sensors</option>
+                    <option>Semiconductor Photomasks</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>Project Description & Technical Requirements</label>
+                  <textarea rows={4} placeholder="Describe substrate size, resist thickness, min feature resolution required..." style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                </div>
+
+                <button
+                  type="submit"
+                  style={{ width: '100%', padding: '0.8rem', background: '#DA2B1F', color: 'white', border: 'none', borderRadius: '4px', fontWeight: '600', fontSize: '0.95rem', cursor: 'pointer', transition: 'background 0.3s', marginTop: '0.5rem' }}
+                  onMouseEnter={(e) => e.target.style.background = '#7C8795'}
+                  onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
                 >
-                  <option value="375nm UV Diode">375nm UV Diode Laser</option>
-                  <option value="405nm UV Diode">405nm UV High Power Laser</option>
-                  <option value="100kV">100kV High Voltage E-Beam</option>
-                  <option value="Thermal Heated Tip">Thermal Heated Probe Tip (1000°C)</option>
-                </select>
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 600 }}>Photoresist System</label>
-                <input
-                  type="text"
-                  value={resist}
-                  onChange={(e) => setResist(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 600 }}>Substrate Wafer Specs</label>
-                <input
-                  type="text"
-                  value={substrate}
-                  onChange={(e) => setSubstrate(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 600 }}>Detailed Technical Specifications</label>
-              <textarea
-                rows={4}
-                placeholder="Include min-feature size (nm/µm), overlay alignment tolerance (±50nm), GDSII layer numbers, inspection requirements..."
-                value={specs}
-                onChange={(e) => setSpecs(e.target.value)}
-                style={{ width: '100%', padding: '0.65rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem', resize: 'none' }}
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="btn-primary"
-              style={{ width: '100%', justifyContent: 'center', padding: '0.85rem', marginTop: '0.5rem' }}
-            >
-              {isSubmitting ? 'Submitting Specifications...' : 'Submit Nanofabrication Project Request'}
-            </button>
-          </form>
+                  Schedule Expert Consultation
+                </button>
+              </form>
+            )}
+          </div>
         </div>
+      </section>
 
-      </div>
-    </div>
+    </main>
   );
 };
 

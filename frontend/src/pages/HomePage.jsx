@@ -145,15 +145,15 @@ export default function HomePage() {
       id: 1,
       title: 'The Glass Revolution: Why Maskless Lithography is the Key to Next-Gen AI Packaging',
       date: 'April 14, 2026',
-      excerpt: 'Organic substrates are hitting a wall. Discover how Heidelberg Instruments\' maskless lithography enables the glass revolution to break the sub-2 µm barrier for AI.',
+      excerpt: 'Organic substrates are hitting a wall. Discover how MLLMLANanofab\'s maskless lithography enables the glass revolution to break the sub-2 µm barrier for AI.',
       image: 'https://heidelberg-instruments.com/wp-content/uploads/2026/03/Glass-Core-Substrate.webp',
       link: 'https://heidelberg-instruments.com/the-glass-revolution-why-maskless-lithography-is-the-key-to-next-gen-ai-packaging/'
     },
     {
       id: 2,
-      title: 'Heidelberg Instruments Receives Repeat Order from Leading Asian Display Photomask Manufacturer for its VPG<sup>+</sup> 1400 FPD System',
+      title: 'MLLMLANanofab Receives Repeat Order from Leading Asian Display Photomask Manufacturer for its VPG<sup>+</sup> 1400 FPD System',
       date: 'April 1, 2026',
-      excerpt: 'Heidelberg Instruments is excited to announce a follow-up order from a leading Asian manufacturer of display photomasks for its flagship VPG⁺ 1400 FPD Volume Pattern Generator.',
+      excerpt: 'MLLMLANanofab is excited to announce a follow-up order from a leading Asian manufacturer of display photomasks for its flagship VPG⁺ 1400 FPD Volume Pattern Generator.',
       image: 'https://heidelberg-instruments.com/wp-content/uploads/2025/03/Product_header_VPG1400FPD-2025_Kopie-1.webp',
       link: 'https://heidelberg-instruments.com/heidelberg-instruments-receives-repeat-order-from-leading-asian-display-photomask-manufacturer-for-its-vpg-1400-fpd-system/'
     },
@@ -161,7 +161,7 @@ export default function HomePage() {
       id: 3,
       title: 'Beta Site Installation of NanoFrazor with Parallelization Capabilities at EPFL',
       date: 'January 20, 2026',
-      excerpt: 'Following the successful introduction of the modular NanoFrazor nanolithography system in 2024, Heidelberg Instruments is proud to announce the installation of the newest NanoFrazor at EPFL.',
+      excerpt: 'Following the successful introduction of the modular NanoFrazor nanolithography system in 2024, MLLMLANanofab is proud to announce the installation of the newest NanoFrazor at EPFL.',
       image: 'https://heidelberg-instruments.com/wp-content/uploads/2026/01/NanoFrazor-Installation-EPFL.webp',
       link: 'https://heidelberg-instruments.com/beta-site-installation-of-nanofrazor-with-parallelization-capabilities-at-epfl/'
     }
@@ -399,7 +399,7 @@ export default function HomePage() {
             textAlign: 'center',
             marginBottom: '1rem'
           }}>
-            Heidelberg Instruments – <span style={{ color: '#DA2B1F' }}>The Power of Direct Writing</span>
+            MLLMLANanofab – <span style={{ color: '#DA2B1F' }}>The Power of Direct Writing</span>
           </h1>
           <h2 style={{
             fontSize: '1.3rem',
@@ -410,7 +410,7 @@ export default function HomePage() {
             margin: '0 auto 1.5rem auto',
             lineHeight: '1.6'
           }}>
-            Heidelberg Instruments is a global leader in high-precision laser lithography systems, maskless aligners, and nanofabrication tools.
+            MLLMLANanofab is a global leader in high-precision laser lithography systems, maskless aligners, and nanofabrication tools.
           </h2>
           <div style={{ maxWidth: '900px', margin: '0 auto', color: '#4B5563', fontSize: '1rem', lineHeight: '1.8' }}>
             <p style={{ marginBottom: '0.75rem' }}>
@@ -420,7 +420,7 @@ export default function HomePage() {
               Our portfolio spans from compact, tabletop systems ideal for prototyping and R&amp;D, to high-end photomask manufacturing equipment designed for high-volume industrial production. This breadth allows us to support a wide range of surface structuring techniques, including precise 2D patterning and complex 2.5D features using grayscale lithography.
             </p>
             <p style={{ marginBottom: '0.75rem' }}>
-              Our commitment to customer success extends beyond our products. At our Process and Application Labs (PAL) in Germany, Switzerland, and China, our expert engineers collaborate closely with customers, providing comprehensive training and support to ensure they maximize the potential of their Heidelberg Instruments equipment.
+              Our commitment to customer success extends beyond our products. At our Process and Application Labs (PAL) in Germany, Switzerland, and China, our expert engineers collaborate closely with customers, providing comprehensive training and support to ensure they maximize the potential of their MLLMLANanofab equipment.
             </p>
             <p style={{ marginBottom: '0.75rem' }}>
               Leading companies, top universities, and renowned research institutes worldwide rely on the flexibility and advanced capabilities of our systems for micro- and nanopatterning. Our technology enables breakthroughs across diverse fields, including micro-optics and microsystems technology, photonics, electronics, semiconductors and advanced packaging, quantum devices, MEMS, nanofluidics, biomedical engineering, 2D materials, and many more.

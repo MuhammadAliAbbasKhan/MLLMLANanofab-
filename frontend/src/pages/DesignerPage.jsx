@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MLAOpticsCanvas } from '../components/canvas/MLAOpticsCanvas';
-import { Sliders, Cpu, FileText, CheckCircle2, Zap, Layers, Activity, Download, Upload } from 'lucide-react';
+import { Sliders, Layers, FileText, Upload, Download } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 
 export const DesignerPage = () => {
@@ -16,132 +16,149 @@ export const DesignerPage = () => {
   };
 
   return (
-    <div style={{ background: '#0A192F', color: '#F8FAFC', padding: '3rem 0' }}>
-      <div className="container">
-        
-        {/* Title Header */}
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#00E5FF', background: 'rgba(0, 229, 255, 0.1)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(0, 229, 255, 0.3)', marginBottom: '0.75rem' }}>
-            <Sliders size={15} /> Physical Optics & Exposure Simulation Suite
-          </div>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#FFF' }}>
-            MLLMLANanofab <span style={{ color: '#00E5FF' }}>DESIGNER</span>
+    <main style={{ fontFamily: 'Source Sans Pro, sans-serif', background: '#F8FAFC', color: '#1D252E', paddingTop: '80px' }}>
+      
+      {/* Banner */}
+      <section style={{
+        position: 'relative',
+        minHeight: '220px',
+        background: 'linear-gradient(135deg, #333F4C 0%, #1D252E 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '3rem 0',
+        color: 'white'
+      }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
+          <span style={{ color: '#DA2B1F', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Interactive Simulation Suite
+          </span>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: '0.5rem 0' }}>
+            MLLMLANanofab DESIGNER Suite
           </h1>
-          <p style={{ color: '#CBD5E1', fontSize: '1rem', marginTop: '0.5rem' }}>
-            Simulate diffraction optics, numerical aperture spot sizes, laser power dosages, and GDSII CAD exposure profiles before cleanroom manufacturing.
+          <p style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: '750px', margin: 0 }}>
+            Simulate laser optics, diffraction spot sizes, laser power dosages, and GDSII CAD exposure profiles before cleanroom manufacturing.
           </p>
         </div>
+      </section>
 
-        {/* Physics Canvas Simulation Engine */}
-        <div style={{ marginBottom: '3rem' }}>
-          <MLAOpticsCanvas />
-        </div>
+      {/* Physics Simulator Canvas Section */}
+      <section style={{ padding: '3.5rem 0' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ marginBottom: '3rem' }}>
+            <MLAOpticsCanvas />
+          </div>
 
-        {/* CAD Layout Pre-checker & Substrate Selector */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-          
-          {/* Substrate & Resist Parameters */}
-          <div className="glass-panel" style={{ padding: '2rem' }}>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#FFF', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Layers size={20} color="#00E5FF" /> Substrate & Resist Configuration
-            </h3>
+          {/* Substrate & GDSII Prechecker */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+            
+            {/* Substrate & Resist Parameters */}
+            <div style={{ background: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#333F4C', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Layers size={20} color="#DA2B1F" /> Substrate & Resist Configuration
+              </h3>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.4rem', fontWeight: 600 }}>
-                  Photoresist / Thermal Resist System
-                </label>
-                <select
-                  value={selectedResist}
-                  onChange={(e) => setSelectedResist(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: '#142A4A', border: '1px solid rgba(0,229,255,0.3)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
-                >
-                  <option value="PMMA 950k">PMMA 950k (Positive E-Beam / UV)</option>
-                  <option value="SU-8 2005">SU-8 2005 (Negative Epoxy Thick Resist)</option>
-                  <option value="AZ 1518">AZ 1518 (Standard Direct Write Photolithography)</option>
-                  <option value="ZEP 520A">ZEP 520A (High Resolution Nanopatterning)</option>
-                  <option value="PPA Thermal">PPA Poly(phthalaldehyde) Thermal SPL</option>
-                </select>
-              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>
+                    Photoresist / Thermal Resist System
+                  </label>
+                  <select
+                    value={selectedResist}
+                    onChange={(e) => setSelectedResist(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.9rem' }}
+                  >
+                    <option value="PMMA 950k">PMMA 950k (Positive E-Beam / UV)</option>
+                    <option value="SU-8 2005">SU-8 2005 (Negative Epoxy Thick Resist)</option>
+                    <option value="AZ 1518">AZ 1518 (Standard Direct Write Photolithography)</option>
+                    <option value="ZEP 520A">ZEP 520A (High Resolution Nanopatterning)</option>
+                    <option value="PPA Thermal">PPA Poly(phthalaldehyde) Thermal SPL</option>
+                  </select>
+                </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.4rem', fontWeight: 600 }}>
-                  Substrate Base Material
-                </label>
-                <select
-                  value={substrate}
-                  onChange={(e) => setSubstrate(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: '#142A4A', border: '1px solid rgba(0,229,255,0.3)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
-                >
-                  <option value="Silicon (100) Wafer">Silicon (100) P/N Wafer (4" / 6" / 8")</option>
-                  <option value="Fused Silica / Quartz">Fused Silica / Quartz (Micro-optics)</option>
-                  <option value="Gallium Arsenide (GaAs)">Gallium Arsenide (GaAs Optoelectronics)</option>
-                  <option value="Sapphire (Al2O3)">Sapphire (Al2O3 LED / Quantum)</option>
-                  <option value="Graphene / SiO2">2D Graphene on 300nm SiO2/Si</option>
-                </select>
-              </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>
+                    Substrate Base Material
+                  </label>
+                  <select
+                    value={substrate}
+                    onChange={(e) => setSubstrate(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.9rem' }}
+                  >
+                    <option value="Silicon (100) Wafer">Silicon (100) P/N Wafer (4" / 6" / 8")</option>
+                    <option value="Fused Silica / Quartz">Fused Silica / Quartz (Micro-optics)</option>
+                    <option value="Gallium Arsenide (GaAs)">Gallium Arsenide (GaAs Optoelectronics)</option>
+                    <option value="Sapphire (Al2O3)">Sapphire (Al2O3 LED / Quantum)</option>
+                    <option value="Graphene / SiO2">2D Graphene on 300nm SiO2/Si</option>
+                  </select>
+                </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#CBD5E1', marginBottom: '0.4rem', fontWeight: 600 }}>
-                  Multi-Pass Lithography Layers
-                </label>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  {[1, 2, 3, 4].map((num) => (
-                    <button
-                      key={num}
-                      onClick={() => setLayerCount(num)}
-                      style={{
-                        flex: 1,
-                        padding: '0.5rem',
-                        borderRadius: '6px',
-                        background: layerCount === num ? '#00E5FF' : 'rgba(255,255,255,0.05)',
-                        color: layerCount === num ? '#040D1A' : '#CBD5E1',
-                        fontWeight: 700,
-                        border: 'none'
-                      }}
-                    >
-                      {num} {num === 1 ? 'Layer' : 'Layers'}
-                    </button>
-                  ))}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: '#4B5563', marginBottom: '0.4rem', fontWeight: 600 }}>
+                    Multi-Pass Lithography Layers
+                  </label>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    {[1, 2, 3, 4].map((num) => (
+                      <button
+                        key={num}
+                        onClick={() => setLayerCount(num)}
+                        style={{
+                          flex: 1,
+                          padding: '0.5rem',
+                          borderRadius: '4px',
+                          background: layerCount === num ? '#DA2B1F' : '#F1F5F9',
+                          color: layerCount === num ? 'white' : '#333F4C',
+                          fontWeight: 700,
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {num} {num === 1 ? 'Layer' : 'Layers'}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* GDSII / OASIS CAD Layout Pre-checker */}
-          <div className="glass-panel" style={{ padding: '2rem' }}>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#FFF', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <FileText size={20} color="#00E5FF" /> GDSII / OASIS CAD Pre-Checker
-            </h3>
+            {/* GDSII CAD Prechecker */}
+            <div style={{ background: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#333F4C', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <FileText size={20} color="#DA2B1F" /> GDSII / OASIS CAD Pre-Checker
+              </h3>
 
-            <p style={{ color: '#CBD5E1', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-              Upload your GDSII or OASIS CAD pattern file to verify min-feature geometries, polygon grid snap, and estimated write time.
-            </p>
+              <p style={{ color: '#4B5563', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                Upload your GDSII or OASIS CAD pattern file to verify min-feature geometries, polygon grid snap, and estimated write time.
+              </p>
 
-            <div style={{ border: '2px dashed rgba(0,229,255,0.3)', borderRadius: '12px', padding: '2rem', textAlign: 'center', background: 'rgba(0,229,255,0.03)', marginBottom: '1.5rem' }}>
-              <Upload size={36} color="#00E5FF" style={{ marginBottom: '0.5rem' }} />
-              <div style={{ fontSize: '0.9rem', color: '#FFF', fontWeight: 600, marginBottom: '0.25rem' }}>
-                {isGdsUploaded ? 'sample_quantum_dots_array.gds' : 'Drag & drop GDSII/OASIS file here'}
+              <div style={{ border: '2px dashed #CBD5E1', borderRadius: '8px', padding: '2rem', textAlign: 'center', background: '#F8FAFC', marginBottom: '1.5rem' }}>
+                <Upload size={36} color="#DA2B1F" style={{ marginBottom: '0.5rem' }} />
+                <div style={{ fontSize: '0.9rem', color: '#333F4C', fontWeight: 600, marginBottom: '0.25rem' }}>
+                  {isGdsUploaded ? 'sample_quantum_dots_array.gds' : 'Drag & drop GDSII/OASIS file here'}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: '#6B7280', marginBottom: '1rem' }}>
+                  Supports .gds, .oas, .cif, .dxf formats up to 500 MB
+                </div>
+                <button
+                  onClick={handleGdsUpload}
+                  style={{ padding: '0.5rem 1.25rem', background: '#333F4C', color: 'white', border: 'none', borderRadius: '4px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer' }}
+                >
+                  {isGdsUploaded ? '✓ GDSII Uploaded (24 Layers)' : 'Browse CAD Files'}
+                </button>
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginBottom: '1rem' }}>
-                Supports .gds, .oas, .cif, .dxf formats up to 500 MB
-              </div>
-              <button onClick={handleGdsUpload} className="btn-outline" style={{ fontSize: '0.8rem' }}>
-                {isGdsUploaded ? '✓ GDSII Uploaded (24 Layers)' : 'Browse CAD Files'}
-              </button>
-            </div>
 
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <button onClick={() => addToast('Exporting simulation parameters to PDF recipe...', 'info')} className="btn-secondary" style={{ flex: 1, justifyContent: 'center', fontSize: '0.85rem' }}>
+              <button
+                onClick={() => addToast('Exporting simulation parameters to PDF recipe...', 'info')}
+                style={{ width: '100%', padding: '0.65rem', background: '#DA2B1F', color: 'white', borderRadius: '4px', border: 'none', fontWeight: '600', fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
+              >
                 <Download size={14} /> Export Recipe PDF
               </button>
             </div>
+
           </div>
-
         </div>
+      </section>
 
-      </div>
-    </div>
+    </main>
   );
 };
 

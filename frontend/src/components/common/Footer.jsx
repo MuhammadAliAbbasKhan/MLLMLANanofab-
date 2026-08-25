@@ -455,7 +455,7 @@ export default function Footer() {
             fontSize: '0.75rem',
             margin: 0
           }}>
-            Disclaimer: Translations were created with the help of AI. Heidelberg Instruments does not guarantee the correctness of the translations.
+            Disclaimer: Translations were created with the help of AI. MLLMLANanofab does not guarantee the correctness of the translations.
           </p>
         </div>
       </section>

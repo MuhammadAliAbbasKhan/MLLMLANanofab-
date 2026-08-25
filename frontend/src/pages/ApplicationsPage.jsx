@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Zap, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { Layers, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const ApplicationsPage = ({ setCurrentPage }) => {
   const applications = [
@@ -42,48 +42,90 @@ export const ApplicationsPage = ({ setCurrentPage }) => {
   ];
 
   return (
-    <div style={{ background: '#0A192F', color: '#F8FAFC', padding: '4rem 0' }}>
-      <div className="container">
-        
-        {/* Header */}
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3.5rem auto' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#00E5FF', background: 'rgba(0, 229, 255, 0.1)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, border: '1px solid rgba(0, 229, 255, 0.3)', marginBottom: '0.75rem' }}>
-            <Layers size={15} /> Industry & Research Applications
-          </div>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#FFF' }}>
-            Nanofabrication <span style={{ color: '#00E5FF' }}>Applications</span>
+    <main style={{ fontFamily: 'Source Sans Pro, sans-serif', background: '#F8FAFC', color: '#1D252E', paddingTop: '80px' }}>
+      
+      {/* Banner */}
+      <section style={{
+        position: 'relative',
+        minHeight: '220px',
+        background: 'linear-gradient(135deg, #333F4C 0%, #1D252E 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '3rem 0',
+        color: 'white'
+      }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
+          <span style={{ color: '#DA2B1F', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Industry & Research Solutions
+          </span>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', margin: '0.5rem 0' }}>
+            Nanofabrication Applications
           </h1>
-          <p style={{ color: '#CBD5E1', fontSize: '1rem', marginTop: '0.5rem' }}>
-            From quantum technologies and 2D materials to micro-optics and MEMS sensors.
+          <p style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: '750px', margin: 0 }}>
+            From quantum devices and 2D materials to micro-optics and MEMS sensors, explore MLLMLANanofab technology solutions.
           </p>
         </div>
+      </section>
 
-        {/* Applications Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+      {/* Grid */}
+      <section style={{ padding: '4rem 0' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
           {applications.map((app, idx) => (
-            <div key={idx} className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div
+              key={idx}
+              style={{
+                background: 'white',
+                borderRadius: '8px',
+                padding: '2rem',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
+                border: '1px solid #E2E8F0',
+                display: 'flex',
+                flexDirection: 'column',
+                justify: 'space-between'
+              }}
+            >
               <div>
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#FFF', marginBottom: '0.25rem' }}>{app.title}</h3>
-                <div style={{ fontSize: '0.85rem', color: '#00E5FF', fontWeight: 600, marginBottom: '1rem' }}>{app.subtitle}</div>
-                <p style={{ color: '#CBD5E1', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>{app.desc}</p>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.85rem', color: '#94A3B8', marginBottom: '1.5rem' }}>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 'bold', color: '#333F4C', marginBottom: '0.25rem' }}>{app.title}</h3>
+                <div style={{ fontSize: '0.85rem', color: '#DA2B1F', fontWeight: 600, marginBottom: '1rem' }}>{app.subtitle}</div>
+                <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>{app.desc}</p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0', display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.85rem', color: '#4B5563' }}>
                   {app.highlights.map((h, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <CheckCircle2 size={14} color="#00E5FF" /> {h}
+                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <CheckCircle2 size={16} color="#DA2B1F" /> {h}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <button onClick={() => setCurrentPage('designer')} className="btn-secondary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
+              <button
+                onClick={() => setCurrentPage('designer')}
+                style={{
+                  width: '100%',
+                  padding: '0.65rem',
+                  background: '#333F4C',
+                  color: 'white',
+                  borderRadius: '4px',
+                  fontWeight: '600',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.4rem',
+                  transition: 'background 0.3s'
+                }}
+                onMouseEnter={(e) => e.target.style.background = '#DA2B1F'}
+                onMouseLeave={(e) => e.target.style.background = '#333F4C'}
+              >
                 Simulate Exposure Parameters <ArrowRight size={14} />
               </button>
             </div>
           ))}
         </div>
+      </section>
 
-      </div>
-    </div>
+    </main>
   );
 };
 
