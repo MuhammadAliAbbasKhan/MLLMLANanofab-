@@ -107,7 +107,7 @@ export const ShopPage = ({ onOpenAuth, currentUser, onOpenCheckout, setCurrentPa
           </div>
 
           {/* Single Form Centralized Pricing Grid ($100 USD, $150 USD, $200 USD) */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem' }}>
             
             {/* Standard Service - $100 USD */}
             <div style={{ background: 'white', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

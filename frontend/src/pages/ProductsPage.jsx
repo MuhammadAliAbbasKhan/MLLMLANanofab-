@@ -145,7 +145,7 @@ export const ProductsPage = ({ setCurrentPage, onOpenTrial }) => {
                 boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                 border: '1px solid #E2E8F0',
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
                 gap: '2rem',
                 alignItems: 'center'
               }}
