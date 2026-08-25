@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, User, Lock, Mail, Building, Check, Shield } from 'lucide-react';
+import { X, User, Lock, Mail, Building, Shield, ArrowRight } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 
 export const AuthModal = ({ isOpen, onClose, onLoginSuccess, initialMode = 'login' }) => {
@@ -8,7 +8,7 @@ export const AuthModal = ({ isOpen, onClose, onLoginSuccess, initialMode = 'logi
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [company, setCompany] = useState('');
-  const [planTier, setPlanTier] = useState('academic');
+  const [planTier, setPlanTier] = useState('100');
   const { addToast } = useToast();
 
   if (!isOpen) return null;
@@ -16,155 +16,158 @@ export const AuthModal = ({ isOpen, onClose, onLoginSuccess, initialMode = 'logi
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      addToast('Please enter both email and password.', 'error');
+      if (addToast) addToast('Please enter both email address and password.', 'error');
+      return;
+    }
+    if (!email.includes('@')) {
+      if (addToast) addToast('Please enter a valid email address.', 'error');
       return;
     }
 
     const userData = {
       email,
       name: fullName || email.split('@')[0],
-      company: company || 'Nanofab Research Lab',
-      plan_tier: planTier,
+      company: company || 'Nanofab Cleanroom Lab',
+      plan_tier: planTier === '100' ? 'Basic Premium Service' : planTier === '150' ? 'Professional Premium Service' : 'Enterprise Premium Service',
       is_admin: email.includes('admin')
     };
 
     if (mode === 'login') {
-      addToast(`Welcome back, ${userData.name}!`, 'success');
+      if (addToast) addToast(`Welcome back, ${userData.name}! Successfully signed in.`, 'success');
       onLoginSuccess(userData);
       onClose();
     } else {
-      addToast(`Account created successfully for ${userData.name}! Triggering license checkout...`, 'success');
-      onLoginSuccess(userData, true); // trigger checkout modal
+      if (addToast) addToast(`Account created successfully for ${userData.name}! Opening Stripe Checkout...`, 'success');
+      onLoginSuccess(userData, true); // Trigger checkout modal
       onClose();
     }
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 10000, background: 'rgba(4, 13, 26, 0.85)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-      <div style={{ background: '#0F2342', border: '1px solid rgba(0, 229, 255, 0.3)', borderRadius: '16px', maxWidth: '460px', width: '100%', padding: '2rem', boxShadow: '0 20px 50px rgba(0,0,0,0.6)', position: 'relative' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(29, 37, 46, 0.85)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', overflowY: 'auto' }}>
+      <div style={{ background: 'white', borderRadius: '12px', maxWidth: '440px', width: '100%', padding: '2rem', boxShadow: '0 20px 50px rgba(0,0,0,0.2)', position: 'relative', border: '1px solid #E2E8F0' }}>
         <button
           onClick={onClose}
-          style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer' }}
+          style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: '#6B7280', cursor: 'pointer' }}
         >
           <X size={20} />
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'linear-gradient(135deg, #00E5FF 0%, #0284C7 100%)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem' }}>
-            <Shield size={26} color="#040D1A" />
+          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'linear-gradient(135deg, #DA2B1F 0%, #333F4C 100%)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: 'white' }}>
+            <Shield size={24} />
           </div>
-          <h3 style={{ color: '#FFFFFF', fontSize: '1.4rem', fontWeight: 700 }}>
+          <h3 style={{ color: '#333F4C', fontSize: '1.4rem', fontWeight: 800, margin: 0 }}>
             {mode === 'login' ? 'Sign In to MLLMLANanofab' : 'Create Research Account'}
           </h3>
-          <p style={{ color: '#94A3B8', fontSize: '0.85rem', marginTop: '0.25rem' }}>
-            {mode === 'login' ? 'Access your optical simulation projects and nanofab specs' : 'Select a subscription plan to access premium lithography tools'}
+          <p style={{ color: '#6B7280', fontSize: '0.85rem', marginTop: '0.35rem' }}>
+            {mode === 'login' ? 'Enter your credentials to access your simulation recipes' : 'Free DESIGNER access included. Upgrade for premium services.'}
           </p>
+        </div>
+
+        {/* Tab Toggle */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', background: '#F1F5F9', borderRadius: '8px', padding: '0.25rem', marginBottom: '1.25rem' }}>
+          <button
+            onClick={() => setMode('login')}
+            style={{ padding: '0.5rem', borderRadius: '6px', border: 'none', background: mode === 'login' ? 'white' : 'transparent', color: mode === 'login' ? '#DA2B1F' : '#6B7280', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', boxShadow: mode === 'login' ? '0 2px 4px rgba(0,0,0,0.06)' : 'none' }}
+          >
+            Sign In
+          </button>
+          <button
+            onClick={() => setMode('signup')}
+            style={{ padding: '0.5rem', borderRadius: '6px', border: 'none', background: mode === 'signup' ? 'white' : 'transparent', color: mode === 'signup' ? '#DA2B1F' : '#6B7280', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', boxShadow: mode === 'signup' ? '0 2px 4px rgba(0,0,0,0.06)' : 'none' }}
+          >
+            Register Account
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {mode === 'signup' && (
             <>
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 500 }}>Full Name</label>
+                <label style={{ display: 'block', fontSize: '0.75rem', color: '#4B5563', marginBottom: '0.25rem', fontWeight: 600 }}>Full Name</label>
                 <div style={{ position: 'relative' }}>
-                  <User size={16} color="#00E5FF" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                  <User size={16} color="#DA2B1F" style={{ position: 'absolute', left: '10px', top: '10px' }} />
                   <input
                     type="text"
                     required
-                    placeholder="Dr. Hans Weber"
+                    placeholder="Dr. Alexander Weber"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    style={{ width: '100%', padding: '0.65rem 0.65rem 0.65rem 2.4rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+                    style={{ width: '100%', padding: '0.6rem 0.65rem 0.6rem 2.2rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.85rem' }}
                   />
                 </div>
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 500 }}>Institution / Organization</label>
+                <label style={{ display: 'block', fontSize: '0.75rem', color: '#4B5563', marginBottom: '0.25rem', fontWeight: 600 }}>Organization / University</label>
                 <div style={{ position: 'relative' }}>
-                  <Building size={16} color="#00E5FF" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                  <Building size={16} color="#DA2B1F" style={{ position: 'absolute', left: '10px', top: '10px' }} />
                   <input
                     type="text"
-                    placeholder="Max Planck Institute / Tech University"
+                    placeholder="Max Planck Institute / Cleanroom Lab"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    style={{ width: '100%', padding: '0.65rem 0.65rem 0.65rem 2.4rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+                    style={{ width: '100%', padding: '0.6rem 0.65rem 0.6rem 2.2rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.85rem' }}
                   />
                 </div>
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 500 }}>Subscription Plan Tier</label>
+                <label style={{ display: 'block', fontSize: '0.75rem', color: '#4B5563', marginBottom: '0.25rem', fontWeight: 600 }}>Service Tier Plan</label>
                 <select
                   value={planTier}
                   onChange={(e) => setPlanTier(e.target.value)}
-                  style={{ width: '100%', padding: '0.65rem', background: '#142A4A', border: '1px solid rgba(0,229,255,0.3)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+                  style={{ width: '100%', padding: '0.6rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.85rem' }}
                 >
-                  <option value="academic">Academic Plan ($149/mo)</option>
-                  <option value="commercial">Commercial Nanofab ($499/mo)</option>
-                  <option value="enterprise">Enterprise Foundry ($999/mo)</option>
+                  <option value="100">Standard Service Plan ($100 USD/mo)</option>
+                  <option value="150">Professional Service Plan ($150 USD/mo)</option>
+                  <option value="200">Enterprise Service Plan ($200 USD/mo)</option>
                 </select>
               </div>
             </>
           )}
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 500 }}>Email Address</label>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: '#4B5563', marginBottom: '0.25rem', fontWeight: 600 }}>Email Address</label>
             <div style={{ position: 'relative' }}>
-              <Mail size={16} color="#00E5FF" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+              <Mail size={16} color="#DA2B1F" style={{ position: 'absolute', left: '10px', top: '10px' }} />
               <input
                 type="email"
                 required
-                placeholder="name@university.edu"
+                placeholder="user@cleanroom-lab.org"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                style={{ width: '100%', padding: '0.65rem 0.65rem 0.65rem 2.4rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+                style={{ width: '100%', padding: '0.6rem 0.65rem 0.6rem 2.2rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.85rem' }}
               />
             </div>
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: '#CBD5E1', marginBottom: '0.35rem', fontWeight: 500 }}>Password</label>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: '#4B5563', marginBottom: '0.25rem', fontWeight: 600 }}>Password</label>
             <div style={{ position: 'relative' }}>
-              <Lock size={16} color="#00E5FF" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+              <Lock size={16} color="#DA2B1F" style={{ position: 'absolute', left: '10px', top: '10px' }} />
               <input
                 type="password"
                 required
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                style={{ width: '100%', padding: '0.65rem 0.65rem 0.65rem 2.4rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FFF', fontSize: '0.9rem' }}
+                style={{ width: '100%', padding: '0.6rem 0.65rem 0.6rem 2.2rem', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '6px', color: '#1D252E', fontSize: '0.85rem' }}
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="btn-primary"
-            style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem', padding: '0.8rem' }}
+            style={{ width: '100%', padding: '0.75rem', background: '#DA2B1F', color: 'white', border: 'none', borderRadius: '6px', fontWeight: '700', fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', transition: 'background 0.3s', marginTop: '0.5rem' }}
           >
-            {mode === 'login' ? 'Sign In' : 'Proceed to Stripe Checkout'}
+            {mode === 'login' ? 'Sign In to Account' : 'Create Account & Proceed'} <ArrowRight size={16} />
           </button>
         </form>
-
-        <div style={{ marginTop: '1.25rem', textAlign: 'center', fontSize: '0.85rem', color: '#94A3B8' }}>
-          {mode === 'login' ? (
-            <>
-              Don't have an account?{' '}
-              <button onClick={() => setMode('signup')} style={{ background: 'none', color: '#00E5FF', fontWeight: 600 }}>
-                Register here
-              </button>
-            </>
-          ) : (
-            <>
-              Already registered?{' '}
-              <button onClick={() => setMode('login')} style={{ background: 'none', color: '#00E5FF', fontWeight: 600 }}>
-                Sign in
-              </button>
-            </>
-          )}
-        </div>
       </div>
     </div>
   );
 };
+
+export default AuthModal;

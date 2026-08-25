@@ -590,6 +590,41 @@ export default function Header({ currentPage, setCurrentPage, currentUser, onOpe
             padding: 0,
             margin: 0
           }}>
+            {/* Mobile Auth Widget */}
+            <div style={{ padding: '0.75rem 0', borderBottom: '1px solid #E5E7EB', marginBottom: '0.75rem' }}>
+              {currentUser ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ fontSize: '0.9rem', color: '#DA2B1F', fontWeight: 700 }}>
+                    👤 {currentUser.email || currentUser.name || 'User'}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: '#6B7280' }}>
+                    Status: {currentUser.is_active ? 'Active Premium Subscriber' : 'Free Basic User'}
+                  </div>
+                  <button
+                    onClick={() => { onLogout(); setIsMobileMenuOpen(false); }}
+                    style={{ width: '100%', background: '#333F4C', color: 'white', border: 'none', borderRadius: '6px', padding: '0.5rem', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', marginTop: '0.25rem' }}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                  <button
+                    onClick={(e) => handleNavClick(e, 'login')}
+                    style={{ width: '100%', background: 'transparent', border: '1px solid #CBD5E1', borderRadius: '6px', padding: '0.5rem', color: '#333F4C', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', textAlign: 'center' }}
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    onClick={(e) => handleNavClick(e, 'signup')}
+                    style={{ width: '100%', background: '#DA2B1F', border: 'none', borderRadius: '6px', padding: '0.5rem', color: 'white', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', textAlign: 'center' }}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Top Menu Items */}
             <div style={{
               display: 'flex',
