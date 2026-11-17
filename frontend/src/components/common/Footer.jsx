@@ -1,5 +1,4 @@
 import React from 'react';
-import { Linkedin, Youtube } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function Footer() {
@@ -39,26 +38,7 @@ export default function Footer() {
                   We are always at your disposal. <br />Please send us your request.
                 </p>
                 <div style={{ height: '10px' }} />
-                <a
-                  href="https://heidelberg-instruments.com/contact-sales/"
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    background: '#DA2B1F',
-                    color: 'white',
-                    borderRadius: '4px',
-                    textDecoration: 'none',
-                    fontWeight: '600',
-                    fontSize: '0.85rem',
-                    transition: 'background 0.3s',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => e.target.style.background = '#7C8795'}
-                  onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
-                >
-                  SALES REQUEST
-                </a>
+                <p style={{ color: '#4B5563', fontSize: '0.85rem' }}>Contact details coming soon</p>
               </div>
 
               {/* Sign up */}
@@ -81,28 +61,7 @@ export default function Footer() {
                   Get quarterly news from<br />the lithography world.
                 </p>
                 <div style={{ height: '10px' }} />
-                <a
-                  href="https://share-eu1.hsforms.com/1XLh2iUVtSLq6kbKdE_Np0Q2enb0m"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    background: '#DA2B1F',
-                    color: 'white',
-                    borderRadius: '4px',
-                    textDecoration: 'none',
-                    fontWeight: '600',
-                    fontSize: '0.85rem',
-                    transition: 'background 0.3s',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => e.target.style.background = '#7C8795'}
-                  onMouseLeave={(e) => e.target.style.background = '#DA2B1F'}
-                >
-                  SUBSCRIBE
-                </a>
+                <p style={{ color: '#4B5563', fontSize: '0.85rem' }}>Newsletter coming soon</p>
               </div>
 
               {/* Connect */}
@@ -121,88 +80,9 @@ export default function Footer() {
                   lineHeight: '1.6',
                   marginBottom: '1rem'
                 }}>
-                  Follow us on social media to benefit <br />from a range of useful resources.
+                  Social links coming soon.
                 </p>
-                <div style={{
-                  display: 'flex',
-                  gap: '0.75rem',
-                  justifyContent: 'center',
-                  paddingTop: '0.5rem'
-                }}>
-                  {/* LinkedIn */}
-                  <a
-                    href="https://linkedin.com/company/heidelberg-instruments"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '40px',
-                      height: '40px',
-                      background: '#424E5B',
-                      borderRadius: '50%',
-                      color: 'white',
-                      transition: 'background 0.3s',
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => e.target.style.background = '#DA2B1F'}
-                    onMouseLeave={(e) => e.target.style.background = '#424E5B'}
-                  >
-                    <Linkedin size={20} />
-                  </a>
-
-                  {/* Bluesky */}
-                  <a
-                    href="https://bsky.app/profile/himt-lithography.bsky.social"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Bluesky"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '40px',
-                      height: '40px',
-                      background: '#424E5B',
-                      borderRadius: '50%',
-                      color: 'white',
-                      transition: 'background 0.3s',
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => e.target.style.background = '#DA2B1F'}
-                    onMouseLeave={(e) => e.target.style.background = '#424E5B'}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24.9 25" fill="currentColor">
-                      <path d="M5.4,3c2.8,2.1,5.9,6.5,7,8.8v6.2c0-.1,0,0-.2.3-.6,1.7-2.9,8.5-8.1,3.1-2.8-2.8-1.5-5.7,3.5-6.5-2.9.5-6.1-.3-7-3.5C.4,10.4,0,4.8,0,4,0,.2,3.3,1.4,5.4,3ZM19.5,3c-2.8,2.1-5.9,6.5-7,8.8v6.2c0-.1,0,0,.2.3.6,1.7,2.9,8.5,8.1,3.1,2.8-2.8,1.5-5.7-3.5-6.5,2.9.5,6.1-.3,7-3.5.3-.9.7-6.6.7-7.3,0-3.8-3.3-2.6-5.4-1.1h0Z" />
-                    </svg>
-                  </a>
-
-                  {/* YouTube */}
-                  <a
-                    href="https://www.youtube.com/c/HeidelbergInstruments"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '40px',
-                      height: '40px',
-                      background: '#424E5B',
-                      borderRadius: '50%',
-                      color: 'white',
-                      transition: 'background 0.3s',
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => e.target.style.background = '#DA2B1F'}
-                    onMouseLeave={(e) => e.target.style.background = '#424E5B'}
-                  >
-                    <Youtube size={20} />
-                  </a>
-                </div>
+                {/* TODO: add verified social links */}
               </div>
             </div>
           </div>
@@ -225,9 +105,9 @@ export default function Footer() {
                 color: '#333F4C',
                 marginBottom: '0.75rem'
               }}>
-                <a href="https://heidelberg-instruments.com/applications/" style={{ color: '#333F4C', textDecoration: 'none' }}>
+                <span style={{ color: '#333F4C', textDecoration: 'none' }}>
                   APPLICATIONS
-                </a>
+                </span>
               </h2>
               <ul style={{
                 listStyle: 'none',
@@ -237,21 +117,21 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/applications/1d-2d-materials/" style={{ color: '#4B5563', textDecoration: 'none' }}>1D and 2D Materials</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/advanced-packaging/" style={{ color: '#4B5563', textDecoration: 'none' }}>Advanced Packaging</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/biotechnology-medical-engineering/" style={{ color: '#4B5563', textDecoration: 'none' }}>Biotechnology and Medical Engineering</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/displays/" style={{ color: '#4B5563', textDecoration: 'none' }}>Displays</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/high-security-printing/" style={{ color: '#4B5563', textDecoration: 'none' }}>High-Security Printing</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/materials-science/" style={{ color: '#4B5563', textDecoration: 'none' }}>Materials Science</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/mems/" style={{ color: '#4B5563', textDecoration: 'none' }}>MEMS</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/microelectronics-nanoelectronics/" style={{ color: '#4B5563', textDecoration: 'none' }}>Microelectronics and Nanoelectronics</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/microfluidics-nanofluidics/" style={{ color: '#4B5563', textDecoration: 'none' }}>Microfluidics and Nanofluidics</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/micro-optics-photonics/" style={{ color: '#4B5563', textDecoration: 'none' }}>Micro-Optics and Photonics</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/nanoimprint-templates/" style={{ color: '#4B5563', textDecoration: 'none' }}>Nanoimprint Templates</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/photomasks/" style={{ color: '#4B5563', textDecoration: 'none' }}>Photomasks</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/quantum-devices/" style={{ color: '#4B5563', textDecoration: 'none' }}>Quantum Devices</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/semiconductors/" style={{ color: '#4B5563', textDecoration: 'none' }}>Semiconductors</a></li>
-                <li><a href="https://heidelberg-instruments.com/applications/sensors/" style={{ color: '#4B5563', textDecoration: 'none' }}>Sensors</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>1D and 2D Materials</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Advanced Packaging</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Biotechnology and Medical Engineering</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Displays</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>High-Security Printing</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Materials Science</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>MEMS</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Microelectronics and Nanoelectronics</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Microfluidics and Nanofluidics</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Micro-Optics and Photonics</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Nanoimprint Templates</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Photomasks</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Quantum Devices</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Semiconductors</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Sensors</span></li>
               </ul>
             </div>
 
@@ -263,9 +143,9 @@ export default function Footer() {
                 color: '#333F4C',
                 marginBottom: '0.75rem'
               }}>
-                <a href="https://heidelberg-instruments.com/core-technologies/" style={{ color: '#333F4C', textDecoration: 'none' }}>
+                <span style={{ color: '#333F4C', textDecoration: 'none' }}>
                   CORE TECHNOLOGIES
-                </a>
+                </span>
               </h2>
               <ul style={{
                 listStyle: 'none',
@@ -275,8 +155,8 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/maskless-laser-lithography/" style={{ color: '#4B5563', textDecoration: 'none' }}>Maskless Laser Lithography</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/thermal-scanning-probe-lithography/" style={{ color: '#4B5563', textDecoration: 'none' }}>Thermal Scanning Probe Lithography</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Maskless Laser Lithography</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Thermal Scanning Probe Lithography</span></li>
               </ul>
 
               <h2 style={{
@@ -296,13 +176,13 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/accurate-pattern-placement/" style={{ color: '#4B5563', textDecoration: 'none' }}>Accurate Pattern Placement</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/grayscale-lithography/" style={{ color: '#4B5563', textDecoration: 'none' }}>Grayscale Lithography</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/high-aspect-ratio/" style={{ color: '#4B5563', textDecoration: 'none' }}>High Aspect Ratio</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/high-ultra-high-resolution/" style={{ color: '#4B5563', textDecoration: 'none' }}>High &amp; Ultra-High Resolution</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/in-situ-inspection-metrology/" style={{ color: '#4B5563', textDecoration: 'none' }}>In-situ Inspection &amp; Metrology</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/non-invasive-nanolithography/" style={{ color: '#4B5563', textDecoration: 'none' }}>Non-invasive Nanolithography</a></li>
-                <li><a href="https://heidelberg-instruments.com/core-technologies/small-unconventional-substrates/" style={{ color: '#4B5563', textDecoration: 'none' }}>Small &amp; Unconventional Substrates</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Accurate Pattern Placement</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Grayscale Lithography</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>High Aspect Ratio</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>High &amp; Ultra-High Resolution</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>In-situ Inspection &amp; Metrology</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Non-invasive Nanolithography</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Small &amp; Unconventional Substrates</span></li>
               </ul>
             </div>
 
@@ -314,9 +194,9 @@ export default function Footer() {
                 color: '#333F4C',
                 marginBottom: '0.75rem'
               }}>
-                <a href="https://heidelberg-instruments.com/products/" style={{ color: '#333F4C', textDecoration: 'none' }}>
+                <span style={{ color: '#333F4C', textDecoration: 'none' }}>
                   PRODUCTS
-                </a>
+                </span>
               </h2>
               <ul style={{
                 listStyle: 'none',
@@ -326,17 +206,17 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/product/%ce%bcmla/" style={{ color: '#4B5563', textDecoration: 'none' }}>μMLA</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/mla150/" style={{ color: '#4B5563', textDecoration: 'none' }}>MLA 150</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/dwl-66/" style={{ color: '#4B5563', textDecoration: 'none' }}>DWL 66<sup>+</sup></a></li>
-                <li><a href="https://heidelberg-instruments.com/product/nanofrazor/" style={{ color: '#4B5563', textDecoration: 'none' }}>NanoFrazor</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/mla300/" style={{ color: '#4B5563', textDecoration: 'none' }}>MLA 300</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/dwl-2000-4000-gs/" style={{ color: '#4B5563', textDecoration: 'none' }}>DWL 2000 GS / DWL 4000 GS</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/vpg-200-400-800/" style={{ color: '#4B5563', textDecoration: 'none' }}>VPG<sup>+</sup> 200 / VPG<sup>+</sup> 400 / VPG<sup>+</sup> 800</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/vpg-1400-1850-fpd/" style={{ color: '#4B5563', textDecoration: 'none' }}>VPG<sup>+</sup> 1400 FPD / VPG<sup>+</sup> 1850 FPD</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/vpg-300-di/" style={{ color: '#4B5563', textDecoration: 'none' }}>VPG 300 DI</a></li>
-                <li><a href="https://heidelberg-instruments.com/product/ultra/" style={{ color: '#4B5563', textDecoration: 'none' }}>ULTRA</a></li>
-                <li><a href="https://heidelberg-instruments.com/products/#product-finder" style={{ color: '#4B5563', textDecoration: 'none' }}>Find Your Solution</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>μMLA</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>MLA 150</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>DWL 66<sup>+</sup></span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>NanoFrazor</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>MLA 300</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>DWL 2000 GS / DWL 4000 GS</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>VPG<sup>+</sup> 200 / VPG<sup>+</sup> 400 / VPG<sup>+</sup> 800</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>VPG<sup>+</sup> 1400 FPD / VPG<sup>+</sup> 1850 FPD</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>VPG 300 DI</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>ULTRA</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Find Your Solution</span></li>
               </ul>
             </div>
 
@@ -348,9 +228,9 @@ export default function Footer() {
                 color: '#333F4C',
                 marginBottom: '0.75rem'
               }}>
-                <a href="https://heidelberg-instruments.com/library/" style={{ color: '#333F4C', textDecoration: 'none' }}>
+                <span style={{ color: '#333F4C', textDecoration: 'none' }}>
                   LIBRARY
-                </a>
+                </span>
               </h2>
 
               <h2 style={{
@@ -370,10 +250,10 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/service-and-support/" style={{ color: '#4B5563', textDecoration: 'none' }}>Service &amp; Support</a></li>
-                <li><a href="https://heidelberg-instruments.com/contact-service/" style={{ color: '#4B5563', textDecoration: 'none' }}>Contact Service</a></li>
-                <li><a href="https://heidelberg-instruments.com/service-and-support/#service-locations" style={{ color: '#4B5563', textDecoration: 'none' }}>Service Locations</a></li>
-                <li><a href="https://heidelberg-instruments.com/faq/" style={{ color: '#4B5563', textDecoration: 'none' }}>Frequently Asked Questions</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Service &amp; Support</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Contact Service</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Service Locations</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Frequently Asked Questions</span></li>
               </ul>
             </div>
 
@@ -395,11 +275,11 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/press-releases/" style={{ color: '#4B5563', textDecoration: 'none' }}>Press Releases</a></li>
-                <li><a href="https://heidelberg-instruments.com/blog/" style={{ color: '#4B5563', textDecoration: 'none' }}>Blog</a></li>
-                <li><a href="https://heidelberg-instruments.com/events/" style={{ color: '#4B5563', textDecoration: 'none' }}>Events</a></li>
-                <li><a href="https://share-eu1.hsforms.com/1XLh2iUVtSLq6kbKdE_Np0Q2enb0m" target="_blank" rel="noopener noreferrer" style={{ color: '#4B5563', textDecoration: 'none' }}>Newsletter</a></li>
-                <li><a href="https://heidelberg-instruments.com/application-image-gallery-on-advanced-micro-nanofabrication/" style={{ color: '#4B5563', textDecoration: 'none' }}>Application Image Gallery</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Press Releases</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Blog</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Events</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Newsletter</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Application Image Gallery</span></li>
               </ul>
 
               <h2 style={{
@@ -419,13 +299,13 @@ export default function Footer() {
                 lineHeight: '1.8',
                 color: '#4B5563'
               }}>
-                <li><a href="https://heidelberg-instruments.com/about-us/" style={{ color: '#4B5563', textDecoration: 'none' }}>About Us</a></li>
-                <li><a href="https://heidelberg-instruments.com/the-lithographer/" style={{ color: '#4B5563', textDecoration: 'none' }}>The Lithographer</a></li>
-                <li><a href="https://heidelberg-instruments.com/history/" style={{ color: '#4B5563', textDecoration: 'none' }}>History</a></li>
-                <li><a href="https://heidelberg-instruments.com/career/" style={{ color: '#4B5563', textDecoration: 'none' }}>Careers</a></li>
-                <li><a href="https://heidelberg-instruments.com/network-memberships/" style={{ color: '#4B5563', textDecoration: 'none' }}>Network Memberships</a></li>
-                <li><a href="https://heidelberg-instruments.com/locations/" style={{ color: '#4B5563', textDecoration: 'none' }}>Locations</a></li>
-                <li><a href="https://heidelberg-instruments.com/contact-sales/" style={{ color: '#4B5563', textDecoration: 'none' }}>Contact Sales</a></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>About Us</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>The Lithographer</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>History</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Careers</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Network Memberships</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Locations</span></li>
+                <li><span style={{ color: '#4B5563', textDecoration: 'none' }}>Contact Sales</span></li>
               </ul>
             </div>
           </div>
@@ -435,20 +315,7 @@ export default function Footer() {
       {/* ===== LANGUAGE SWITCHER & DISCLAIMER ===== */}
       <section style={{ padding: '1rem 0', background: '#D0D4E3' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '1rem',
-            marginBottom: '0.75rem'
-          }}>
-            <a href="https://heidelberg-instruments.com/" style={{ color: '#333F4C', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '600' }}>English</a>
-            <a href="https://heidelberg-instruments.com/zh-hans/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.85rem' }}>简体中文</a>
-            <a href="https://heidelberg-instruments.com/ja/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.85rem' }}>日本語</a>
-            <a href="https://heidelberg-instruments.com/ko/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.85rem' }}>한국어</a>
-            <a href="https://heidelberg-instruments.com/es/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.85rem' }}>Español</a>
-            <a href="https://heidelberg-instruments.com/fr/" style={{ color: '#4B5563', textDecoration: 'none', fontSize: '0.85rem' }}>Français</a>
-          </div>
+          {/* Language links removed (pointed to another company's site) */}
 
           <p style={{
             textAlign: 'center',
@@ -461,9 +328,12 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* ===== LEGAL LINKS ===== */}
+      {/* ===== LEGAL LINKS & COPYRIGHT ===== */}
       <section style={{ padding: '0.5rem 0 1.5rem 0', background: '#D0D4E3' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
+          <p style={{ textAlign: 'center', color: '#4B5563', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
+            &copy; {new Date().getFullYear()} MLLMLANanofab. All rights reserved.
+          </p>
           <div style={{
             display: 'flex',
             justifyContent: 'center',
